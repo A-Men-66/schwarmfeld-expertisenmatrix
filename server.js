@@ -96,6 +96,7 @@ async function initDB() {
   // Migrations
   await pool.query(`ALTER TABLE skills ADD COLUMN IF NOT EXISTS kategorie VARCHAR(50) DEFAULT 'Allgemein'`);
   await pool.query(`ALTER TABLE mitglieder ADD COLUMN IF NOT EXISTS urls TEXT DEFAULT '[]'`);
+  await pool.query(`ALTER TABLE config ADD COLUMN IF NOT EXISTS primary_color VARCHAR(20) DEFAULT '#2563eb'`);
 
   // Admin-Account anlegen falls nicht vorhanden
   const adminEmail = process.env.ADMIN_EMAIL;
@@ -259,15 +260,15 @@ app.post('/api/auth/passwort-aendern', authRequired, async (req, res) => {
 
 // ─── Config ────────────────────────────────────────────────────────────────
 app.get('/api/config', async (req, res) => {
-  const result = await pool.query('SELECT app_name, app_subtitle, kontakt_email, uber_uns FROM config WHERE id = 1');
+  const result = await pool.query('SELECT app_name, app_subtitle, kontakt_email, uber_uns, primary_color FROM config WHERE id = 1');
   res.json(result.rows[0]);
 });
 
 app.put('/api/admin/config', adminRequired, async (req, res) => {
-  const { app_name, app_subtitle, kontakt_email, uber_uns } = req.body;
+  const { app_name, app_subtitle, kontakt_email, uber_uns, primary_color } = req.body;
   await pool.query(
-    'UPDATE config SET app_name=$1, app_subtitle=$2, kontakt_email=$3, uber_uns=$4 WHERE id=1',
-    [app_name || 'SchwarmFeld · System Delta', app_subtitle || '', kontakt_email || '', uber_uns || '']
+    'UPDATE config SET app_name=$1, app_subtitle=$2, kontakt_email=$3, uber_uns=$4, primary_color=$5 WHERE id=1',
+    [app_name || 'SchwarmFeld · System Delta', app_subtitle || '', kontakt_email || '', uber_uns || '', primary_color || '#2563eb']
   );
   res.json({ ok: true });
 });
