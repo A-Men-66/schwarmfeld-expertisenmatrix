@@ -6,7 +6,7 @@ Mitglieder können sich mit ihren Fähigkeiten, Interessen und Kontaktdaten eint
 
 **Live-Instanz:** https://schwarm-feld-sd.andreas-artmann.de
 
-**Quellcode:** https://github.com/A-Men-66/schwarmfeld-sd
+**Quellcode:** https://github.com/A-Men-66/schwarmfeld-expertisenmatrix
 
 ## Funktionen
 
@@ -24,7 +24,7 @@ Mitglieder können sich mit ihren Fähigkeiten, Interessen und Kontaktdaten eint
 ## Installation
 
 ```bash
-git clone https://github.com/A-Men-66/schwarmfeld-sd.git
+git clone https://github.com/A-Men-66/schwarmfeld-expertisenmatrix.git
 cd schwarmfeld-sd
 npm install
 cp .env.example .env
