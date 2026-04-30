@@ -8,6 +8,21 @@ Mitglieder können sich mit ihren Fähigkeiten, Interessen und Kontaktdaten eint
 
 **Quellcode:** https://github.com/A-Men-66/schwarmfeld-expertisenmatrix
 
+## Ziel
+
+Das SchwarmFeld macht sichtbar, **wer was kann und woran interessiert ist** — damit Zusammenarbeit entstehen kann, die sonst im Verborgenen bleibt. Alle Mitglieder können sich mit ihren inhaltlichen Schwerpunkten und praktischen Fähigkeiten eintragen und ihr zeitliches Budget angeben.
+
+## Nicht-Ziele
+
+- Kein allgemeines Projektverwaltungstool
+- Keine Aufgaben- oder Terminfunktion
+- Kein Ersatz für persönliche Kommunikation — das Tool schafft Orientierung, nicht Koordination
+- Keine öffentliche Plattform: Zugang nur über Admin-Einladung
+
+## Lösungsansatz
+
+Jedes Mitglied bekommt einen eigenen Account und pflegt sein Profil selbst. Skills sind in Kategorien unterteilt (inhaltliche Säulen, Methoden, Plattformen) und können mit einem Niveau versehen werden (0–3). Neue Profile werden erst nach Admin-Freigabe sichtbar. Die Übersicht zeigt alle aktiven Mitglieder auf einen Blick — filterbar nach Skills.
+
 ## Funktionen
 
 - Registrierung und Login mit E-Mail/Passwort
