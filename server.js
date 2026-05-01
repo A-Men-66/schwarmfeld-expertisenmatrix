@@ -456,6 +456,16 @@ app.delete('/api/admin/users/:id', adminRequired, async (req, res) => {
   res.json({ ok: true });
 });
 
+app.put('/api/admin/users/:id/rolle', adminRequired, async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (id === req.user.id) return res.status(400).json({ error: 'Eigene Rolle kann nicht geändert werden' });
+  const { rolle } = req.body;
+  if (!['mitglied', 'admin'].includes(rolle)) return res.status(400).json({ error: 'Ungültige Rolle' });
+  const result = await pool.query('UPDATE users SET role = $1 WHERE id = $2 RETURNING id', [rolle, id]);
+  if (result.rows.length === 0) return res.status(404).json({ error: 'User nicht gefunden' });
+  res.json({ ok: true });
+});
+
 app.put('/api/admin/users/:id/passwort', adminRequired, async (req, res) => {
   const { neues_passwort } = req.body;
   if (!neues_passwort || neues_passwort.length < 6) return res.status(400).json({ error: 'Passwort mindestens 6 Zeichen' });

@@ -1346,14 +1346,17 @@ async function loadAdminMitglieder() {
     const ohneProfil = users.filter(u => u.role === 'mitglied' && !mitProfil.has(u.email));
 
     const renderRow = (m, u) => {
-      const uid = u?.id, isMe = uid === currentUser?.id;
+      const uid = u?.id, isMe = uid === currentUser?.id, isAdmin = u?.role === 'admin';
       return `<tr>
-        <td><strong>${escHtml(m ? m.name : (u?.anzeigename || u?.email || '–'))}</strong><br>
+        <td><strong>${escHtml(m ? m.name : (u?.anzeigename || u?.email || '–'))}</strong>
+        ${isAdmin ? '<span style="font-size:0.75rem;background:#7c3aed;color:#fff;border-radius:4px;padding:1px 6px;margin-left:4px">Admin</span>' : ''}
+        <br>
         <span style="font-size:0.8rem;color:var(--text-muted)">${escHtml(m ? m.user_email : u?.email || '–')}</span></td>
         <td>${m ? m.skills.slice(0,3).map(s => `<span class="badge badge-blue">${escHtml(s.name)}</span> `).join('') + (m.skills.length > 3 ? `+${m.skills.length-3}` : '') : ''}</td>
         <td style="display:flex;gap:4px;flex-wrap:wrap">
           ${m ? `<button class="btn btn-sm ${m.aktiv ? 'btn-secondary' : 'btn-primary'}" onclick="toggleAktiv(${m.id})">${m.aktiv ? 'Deaktiv.' : 'Aktivieren'}</button>` : ''}
           ${uid && !isMe ? `<button class="btn btn-sm btn-secondary" onclick="openPasswortSetzenModal(${uid},'${escHtml(u.email)}')">🔑</button>` : ''}
+          ${uid && !isMe ? `<button class="btn btn-sm btn-secondary" onclick="setzeRolle(${uid},'${isAdmin ? 'mitglied' : 'admin'}')" title="${isAdmin ? 'Zum Mitglied machen' : 'Zum Admin machen'}">${isAdmin ? '👤' : '👑'}</button>` : ''}
           ${m && !isMe ? `<button class="btn btn-sm btn-danger" onclick="deleteMitglied(${m.id})">Profil ✕</button>` : ''}
           ${uid && !isMe ? `<button class="btn btn-sm btn-danger" onclick="deleteAccount(${uid})">Account ✕</button>` : ''}
           ${isMe ? '<span style="font-size:0.8rem;color:var(--text-muted)">(du)</span>' : ''}
@@ -1403,6 +1406,16 @@ async function deleteAccount(id) {
   if (!confirm('Account wirklich löschen?')) return;
   try { await api('DELETE', `/api/admin/users/${id}`); loadAdminMitglieder(); showToast('Account gelöscht'); }
   catch (e) { showToast('Fehler: ' + e.message); }
+}
+
+async function setzeRolle(id, rolle) {
+  const label = rolle === 'admin' ? 'zum Admin machen' : 'zum Mitglied machen';
+  if (!confirm(`Diesen Account wirklich ${label}?`)) return;
+  try {
+    await api('PUT', `/api/admin/users/${id}/rolle`, { rolle });
+    loadAdminMitglieder();
+    showToast(rolle === 'admin' ? 'Zur Admin gemacht' : 'Zur Mitglied gemacht');
+  } catch (e) { showToast('Fehler: ' + e.message); }
 }
 
 async function loadAdminSkills() {
