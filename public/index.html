@@ -4,28 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>SchwarmFeld · System Delta</title>
+  <title>SchwarmFeld</title>
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-light: #dbeafe;
-      --secondary: #7c3aed;
-      --accent: #f59e0b;
-      --accent-light: #fef3c7;
-      --danger: #ef4444;
-      --danger-light: #fee2e2;
-      --bg: #f0f4ff;
-      --card: #ffffff;
-      --text: #111827;
-      --text-muted: #6b7280;
-      --border: #dbeafe;
-      --border-gray: #e5e7eb;
+      --primary: #2563eb; --primary-dark: #1d4ed8; --primary-light: #dbeafe;
+      --secondary: #7c3aed; --accent: #f59e0b; --accent-light: #fef3c7;
+      --danger: #ef4444; --danger-light: #fee2e2;
+      --bg: #f0f4ff; --card: #ffffff; --text: #111827; --text-muted: #6b7280;
+      --border: #dbeafe; --border-gray: #e5e7eb;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
     header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 14px 0 0 0; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
     .header-content { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
     .header-brand h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; }
@@ -37,50 +26,35 @@
     header nav button { background: none; border: none; color: rgba(255,255,255,0.8); padding: 10px 16px; cursor: pointer; font-size: 0.9rem; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.15s; }
     header nav button:hover { color: white; }
     header nav button.active { color: white; border-bottom-color: white; }
-
     main { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
-    .view { display: none; }
-    .view.active { display: block; }
-
+    .view { display: none; } .view.active { display: block; }
     .card { background: var(--card); border-radius: 12px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 1px solid var(--border-gray); }
     .card + .card { margin-top: 16px; }
     .card h2 { font-size: 1.2rem; margin-bottom: 16px; color: var(--primary-dark); }
-
     .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; border: none; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-secondary { background: #e5e7eb; color: var(--text); }
-    .btn-secondary:hover { background: #d1d5db; }
-    .btn-danger { background: var(--danger); color: white; }
-    .btn-danger:hover { background: #dc2626; }
-    .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
-    .btn-outline:hover { background: var(--primary-light); }
-    .btn-sm { padding: 6px 12px; font-size: 0.85rem; }
-    .btn-lg { padding: 14px 28px; font-size: 1.05rem; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
+    .btn-primary { background: var(--primary); color: white; } .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: #e5e7eb; color: var(--text); } .btn-secondary:hover { background: #d1d5db; }
+    .btn-danger { background: var(--danger); color: white; } .btn-danger:hover { background: #dc2626; }
+    .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); } .btn-outline:hover { background: var(--primary-light); }
+    .btn-sm { padding: 6px 12px; font-size: 0.85rem; } .btn-lg { padding: 14px 28px; font-size: 1.05rem; } .btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-weight: 500; margin-bottom: 6px; font-size: 0.9rem; }
     .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px 14px; border: 1px solid var(--border-gray); border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: white; transition: border-color 0.15s; }
-    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
     .form-group textarea { resize: vertical; min-height: 80px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
-
     .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
     .chip { padding: 6px 14px; border-radius: 20px; border: 2px solid var(--border-gray); background: white; font-size: 0.85rem; cursor: pointer; transition: all 0.15s; user-select: none; }
     .chip:hover { border-color: var(--primary); color: var(--primary); }
     .chip.selected { background: var(--primary); border-color: var(--primary); color: white; }
-
+    .chip.type-chip.selected { background: var(--secondary); border-color: var(--secondary); color: white; }
     .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 0.9rem; }
     .alert-error { background: var(--danger-light); color: #b91c1c; border: 1px solid #fca5a5; }
     .alert-success { background: var(--primary-light); color: var(--primary-dark); border: 1px solid #93c5fd; }
     .alert-info { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-
     #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: #1f2937; color: white; padding: 12px 24px; border-radius: 8px; font-size: 0.9rem; z-index: 9999; transition: transform 0.3s; pointer-events: none; }
     #toast.show { transform: translateX(-50%) translateY(0); }
-
-    /* Wizard */
     .wizard-container { max-width: 700px; margin: 0 auto; }
     .wizard-progress { display: flex; align-items: center; margin-bottom: 32px; }
     .wizard-step-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border-gray); background: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
@@ -88,13 +62,10 @@
     .wizard-step-dot.active { border-color: var(--primary); color: var(--primary); }
     .wizard-step-line { flex: 1; height: 2px; background: var(--border-gray); transition: background 0.2s; }
     .wizard-step-line.done { background: var(--primary); }
-    .wizard-step-content { display: none; }
-    .wizard-step-content.active { display: block; }
+    .wizard-step-content { display: none; } .wizard-step-content.active { display: block; }
     .wizard-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
     .wizard-subtitle { color: var(--text-muted); margin-bottom: 24px; }
     .wizard-nav { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border-gray); }
-
-    /* Niveau-Wähler */
     .niveau-selector { display: flex; gap: 6px; align-items: center; }
     .niveau-btn { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border-gray); background: white; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
     .niveau-btn:hover { border-color: var(--primary); color: var(--primary); }
@@ -102,35 +73,27 @@
     .niveau-btn.active-2 { background: #fef3c7; border-color: #d97706; color: #b45309; }
     .niveau-btn.active-3 { background: #dbeafe; border-color: var(--primary); color: var(--primary-dark); }
     .niveau-label { font-size: 0.78rem; color: var(--text-muted); min-width: 80px; }
-
-    /* Skill-Gruppe */
     .skill-gruppe { margin-bottom: 20px; }
     .skill-gruppe-titel { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border-gray); }
     .skill-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f3f4f6; }
     .skill-row:last-child { border-bottom: none; }
     .skill-row-name { flex: 1; font-size: 0.9rem; }
-
-    /* Ergebnisse */
     .result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 20px; }
     .result-card { background: white; border: 1px solid var(--border-gray); border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform 0.15s, box-shadow 0.15s; }
     .result-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .result-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
     .result-card h3 { font-size: 1.1rem; color: var(--primary-dark); }
     .match-score { background: var(--primary); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
-    .match-score.high { background: #059669; }
-    .match-score.medium { background: var(--accent); color: #1c1917; }
-    .match-score.low { background: var(--text-muted); }
+    .match-score.high { background: #059669; } .match-score.medium { background: var(--accent); color: #1c1917; } .match-score.low { background: var(--text-muted); }
     .result-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
+    .result-card .meta { font-size: 0.8rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .result-card .meta span { background: var(--bg); padding: 2px 8px; border-radius: 4px; }
     .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
     .skill-pill { padding: 3px 10px; border-radius: 12px; font-size: 0.78rem; background: var(--primary-light); color: var(--primary-dark); }
     .skill-pill.matched { background: var(--primary); color: white; }
     .niveau-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
-    .niveau-dot-1 { background: #16a34a; }
-    .niveau-dot-2 { background: #d97706; }
-    .niveau-dot-3 { background: var(--primary); }
-
-    /* Landing */
-    .landing-hero { text-align: center; padding: 20px 20px 24px; }
+    .niveau-dot-1 { background: #16a34a; } .niveau-dot-2 { background: #d97706; } .niveau-dot-3 { background: var(--primary); }
+    .landing-hero { text-align: center; padding: 40px 20px 28px; }
     .landing-hero h2 { font-size: 2.2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; line-height: 1.2; }
     .landing-hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 560px; margin: 0 auto 24px; }
     .landing-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -139,39 +102,31 @@
     .how-card .how-icon { font-size: 2.5rem; margin-bottom: 12px; }
     .how-card h3 { color: var(--primary-dark); margin-bottom: 8px; }
     .how-card p { font-size: 0.9rem; color: var(--text-muted); }
-
-    /* Tabellen */
     .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
     .data-table th { text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--border-gray); font-weight: 600; color: var(--text-muted); }
     .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border-gray); vertical-align: top; }
     .data-table tr:hover td { background: #fafafa; }
     .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
-    .badge-green { background: #dcfce7; color: #15803d; }
-    .badge-gray { background: #f3f4f6; color: var(--text-muted); }
-    .badge-blue { background: var(--primary-light); color: var(--primary-dark); }
-
-    /* Modal */
+    .badge-green { background: #dcfce7; color: #15803d; } .badge-gray { background: #f3f4f6; color: var(--text-muted); } .badge-blue { background: var(--primary-light); color: var(--primary-dark); }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; justify-content: center; align-items: flex-start; padding: 40px 20px; overflow-y: auto; }
     .modal-overlay.open { display: flex; }
     .modal { background: white; border-radius: 16px; padding: 28px; max-width: 580px; width: 100%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
     .modal h2 { margin-bottom: 20px; color: var(--primary-dark); }
     .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-muted); line-height: 1; }
     .modal-close:hover { color: var(--text); }
-
-    /* Anleitung */
     .anleitung-tabs { display: flex; gap: 8px; margin-bottom: 24px; }
-    .anleitung-section { display: none; }
-    .anleitung-section.active { display: block; }
+    .anleitung-section { display: none; } .anleitung-section.active { display: block; }
     .anleitung-step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
     .anleitung-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; font-size: 0.9rem; }
     .anleitung-text h3 { font-size: 1rem; color: var(--primary-dark); margin-bottom: 4px; }
     .anleitung-text p { font-size: 0.9rem; color: var(--text-muted); }
-
-    @media (max-width: 640px) {
-      .form-row { grid-template-columns: 1fr; }
-      .landing-hero h2 { font-size: 1.6rem; }
-      .result-grid { grid-template-columns: 1fr; }
-    }
+    .zeit-option { display: flex; align-items: center; gap: 16px; padding: 16px; border: 2px solid var(--border-gray); border-radius: 10px; cursor: pointer; margin-bottom: 10px; background: white; transition: all 0.15s; }
+    .zeit-option:hover { border-color: var(--primary); }
+    .zeit-option.selected { border-color: var(--primary); background: var(--primary-light); }
+    .zeit-option .icon { font-size: 1.5rem; }
+    .zeit-option .label { font-weight: 600; }
+    .zeit-option .desc { font-size: 0.85rem; color: var(--text-muted); }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } .landing-hero h2 { font-size: 1.6rem; } .result-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -179,8 +134,8 @@
 <header>
   <div class="header-content">
     <div class="header-brand">
-      <h1 id="headerAppName">SchwarmFeld · System Delta <span class="version-badge">v1.0</span></h1>
-      <p id="headerAppSubtitle">Expertise-Matrix & Vernetzung</p>
+      <h1 id="headerAppName">SchwarmFeld <span class="version-badge">v1.1</span></h1>
+      <p id="headerAppSubtitle">Expertise-Matrix &amp; Vernetzung</p>
       <p style="font-size:0.75rem; opacity:0.6; margin-top:2px">Ein freies Werkzeug von <a href="https://andreas-artmann.de/meine-gaben/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline; opacity:0.85">Andreas Artmann · Transformationslogistiker</a></p>
     </div>
     <div class="header-user" id="headerUser" style="display:none">
@@ -192,26 +147,31 @@
     <button onclick="showView('landing')" id="nav-landing" class="active">🏠 Start</button>
     <button onclick="guardedView('suche')" id="nav-suche" style="display:none">🔍 Expertise finden</button>
     <button onclick="guardedView('uebersicht')" id="nav-uebersicht" style="display:none">👥 Alle Mitglieder</button>
-    <button onclick="showView('ueber-uns')" id="nav-ueber-uns" style="display:none">ℹ️ Über uns</button>
+    <button onclick="showView('wizard')" id="nav-wizard" style="display:none">🧭 Meinen Platz finden</button>
+    <button onclick="showView('uber-uns')" id="nav-uber-uns" style="display:none">ℹ️ Über uns</button>
     <button onclick="showView('anleitung')" id="nav-anleitung">📖 Anleitung</button>
+    <button onclick="showView('hilfe')" id="nav-hilfe" style="display:none">❓ Hilfe</button>
     <button onclick="showView('login')" id="nav-login">🔐 Anmelden</button>
     <button onclick="showView('mitglied-dashboard'); loadMitgliedProfil()" id="nav-mitglied" style="display:none">📋 Mein Profil</button>
-    <button onclick="showView('admin-dashboard'); showAdminTab('mitglieder')" id="nav-admin" style="display:none">⚙️ Admin</button>
+    <button onclick="showView('initiative-dashboard')" id="nav-initiative" style="display:none">📋 Mein Profil</button>
+    <button onclick="showView('admin-dashboard'); showAdminTab('entities')" id="nav-admin" style="display:none">⚙️ Admin</button>
   </nav>
 </header>
 
 <main>
 
-  <!-- ── LANDING ──────────────────────────────────────────────────────── -->
-  <div id="view-landing" class="view active">
+<!-- ── LANDING ── -->
+<div id="view-landing" class="view active">
+
+  <div id="landing-expertise">
     <div class="landing-hero">
       <h2>Wer bringt was mit?<br>Expertise sichtbar machen.</h2>
-      <p>Die interne Expertise-Karte von System Delta — damit wir wissen, wen wir fragen können, und damit niemand allein sucht.</p>
-      <div class="landing-cta" id="landingCta">
+      <p>Die interne Expertise-Karte — damit wir wissen, wen wir fragen können, und damit niemand allein sucht.</p>
+      <div class="landing-cta" id="landingCta" style="display:none">
         <button class="btn btn-primary btn-lg" onclick="guardedView('suche')">🔍 Expertise finden</button>
         <button class="btn btn-outline btn-lg" onclick="guardedView('uebersicht')">👥 Alle Mitglieder</button>
       </div>
-      <div id="landingCtaGast" style="display:none">
+      <div id="landingCtaGast">
         <p style="color:var(--text-muted); margin-bottom:16px; font-size:0.95rem">Bitte melde dich an, um die Expertise-Karte zu nutzen.</p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
           <button class="btn btn-primary btn-lg" onclick="showView('login')">🔐 Anmelden</button>
@@ -227,433 +187,439 @@
         <div style="display:flex; align-items:center; gap:8px"><span class="niveau-dot niveau-dot-3" style="width:12px;height:12px"></span> <strong>3 — Expert:in</strong> <span style="color:var(--text-muted); font-size:0.88rem">Kann andere einführen, ist Ansprechperson</span></div>
       </div>
     </div>
-
     <div class="landing-how">
-      <div class="how-card">
-        <div class="how-icon">📋</div>
-        <h3>Expertise eintragen</h3>
-        <p>Jedes Mitglied pflegt sein Profil — mit Themen, Methoden, Plattform-Wissen und persönlichem Zeitbudget.</p>
+      <div class="how-card"><div class="how-icon">📋</div><h3>Expertise eintragen</h3><p>Jedes Mitglied pflegt sein Profil mit Themen, Methoden, Plattform-Wissen und zeitlichem Budget.</p></div>
+      <div class="how-card"><div class="how-icon">🔍</div><h3>Gezielt suchen</h3><p>Du brauchst jemanden für Storytelling, Facilitation oder Komplementärwährungen? In wenigen Klicks findest du die richtige Person.</p></div>
+      <div class="how-card"><div class="how-icon">🤝</div><h3>Direkt verbinden</h3><p>Profil öffnen, Kontakt aufnehmen — fertig. Kein Umweg über Koordinationsstellen.</p></div>
+    </div>
+  </div>
+
+  <div id="landing-matching" style="display:none">
+    <div class="landing-hero">
+      <h2>Wo wirkst du?<br>Finde deinen Platz im Schwarm.</h2>
+      <p>Transformations-Initiativen suchen Menschen mit bestimmten Fähigkeiten. In wenigen Schritten findest du heraus, wo dein Beitrag gebraucht wird.</p>
+      <div class="landing-cta">
+        <button class="btn btn-primary btn-lg" onclick="showView('wizard')">🧭 Meinen Platz finden</button>
+        <button class="btn btn-outline btn-lg" onclick="showView('login')">Initiative eintragen</button>
       </div>
-      <div class="how-card">
-        <div class="how-icon">🔍</div>
-        <h3>Gezielt suchen</h3>
-        <p>Du brauchst jemanden für Storytelling, Facilitation oder Komplementärwährungen? In wenigen Klicks findest du die richtige Person.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-icon">🤝</div>
-        <h3>Direkt verbinden</h3>
-        <p>Profil öffnen, Kontakt aufnehmen — fertig. Kein Umweg über Koordinationsstellen.</p>
+    </div>
+    <div class="landing-how">
+      <div class="how-card"><div class="how-icon">💡</div><h3>Was bringst du mit?</h3><p>Fähigkeiten, Interessen, verfügbare Zeit – du sagst uns, was du einbringen kannst.</p></div>
+      <div class="how-card"><div class="how-icon">🔍</div><h3>Wir finden die Passung</h3><p>Dein Profil wird mit den Bedarfen aller aktiven Initiativen verglichen.</p></div>
+      <div class="how-card"><div class="how-icon">🤝</div><h3>Du nimmst Kontakt auf</h3><p>Du siehst passende Initiativen mit direktem Kontakt – und du entscheidest, ob du andockst.</p></div>
+    </div>
+    <div style="margin-top:32px; background:white; border-radius:12px; border:1px solid var(--border-gray); padding:24px">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px"><div style="font-size:1.8rem">🐝</div><h3 style="color:var(--primary-dark); margin:0">Wächst langsam – und exponentiell</h3></div>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:10px">Der Schwarm wächst wie ein Bienenstock: von Mensch zu Mensch, nur zwischen Menschen die sich kennen und vertrauen. Keine Massenverteilung. Und doch liegt darin eine stille, enorme Kraft – die Kraft der Exponentialität.</p>
+      <div style="background:var(--primary-light); border-radius:8px; padding:12px; max-width:280px; font-size:0.9rem; color:var(--primary-dark)">
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:6px">Wenn jede Person drei weitere mitnimmt …</div>
+        <table style="width:100%; border-collapse:collapse">
+          <tr><td style="color:var(--text-muted)">Runde 1</td><td style="text-align:right">3</td></tr>
+          <tr><td style="color:var(--text-muted)">Runde 3</td><td style="text-align:right">27</td></tr>
+          <tr><td style="color:var(--text-muted)">Runde 5</td><td style="text-align:right">243</td></tr>
+          <tr style="border-top:1px solid rgba(0,0,0,0.1)"><td style="font-weight:600">Runde 10</td><td style="text-align:right; font-weight:700">59.049</td></tr>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- ── SUCHE ────────────────────────────────────────────────────────── -->
-  <div id="view-suche" class="view">
-    <div class="wizard-container">
-      <div class="wizard-progress">
-        <div class="wizard-step-dot active" id="dot-1">1</div>
-        <div class="wizard-step-line" id="line-1"></div>
-        <div class="wizard-step-dot" id="dot-2">2</div>
-        <div class="wizard-step-line" id="line-2"></div>
-        <div class="wizard-step-dot" id="dot-3">3</div>
-      </div>
+</div>
 
-      <div class="wizard-step-content active" id="step-1">
-        <div class="wizard-title">Was suchst du?</div>
-        <div class="wizard-subtitle">Wähle einen oder mehrere Bereiche.</div>
-        <div class="chip-group">
-          <div class="chip" data-kat="Säule" onclick="toggleChip(this)">🧠 Thematische Expertise</div>
-          <div class="chip" data-kat="Methode" onclick="toggleChip(this)">🛠 Methode / Handwerk</div>
-          <div class="chip" data-kat="Plattform" onclick="toggleChip(this)">📱 Plattform-Wissen</div>
-        </div>
-        <div class="wizard-nav">
-          <div></div>
-          <button class="btn btn-primary" onclick="wizardNext(2)">Weiter →</button>
-        </div>
+<!-- ── SUCHE (Expertise) ── -->
+<div id="view-suche" class="view">
+  <div class="wizard-container">
+    <div class="wizard-progress">
+      <div class="wizard-step-dot active" id="dot-1">1</div>
+      <div class="wizard-step-line" id="line-1"></div>
+      <div class="wizard-step-dot" id="dot-2">2</div>
+      <div class="wizard-step-line" id="line-2"></div>
+      <div class="wizard-step-dot" id="dot-3">3</div>
+    </div>
+    <div class="wizard-step-content active" id="step-1">
+      <div class="wizard-title">Was suchst du?</div>
+      <div class="wizard-subtitle">Wähle einen oder mehrere Bereiche.</div>
+      <div class="chip-group">
+        <div class="chip" data-kat="Säule" onclick="toggleChip(this)">🧠 Thematische Expertise</div>
+        <div class="chip" data-kat="Methode" onclick="toggleChip(this)">🛠 Methode / Handwerk</div>
+        <div class="chip" data-kat="Plattform" onclick="toggleChip(this)">📱 Plattform-Wissen</div>
       </div>
-
-      <div class="wizard-step-content" id="step-2">
-        <div class="wizard-title">Welche Skills genau?</div>
-        <div class="wizard-subtitle">Wähle alle die passen. Leer lassen = alle anzeigen.</div>
-        <div id="suchSkillChips"></div>
-        <div class="wizard-nav">
-          <button class="btn btn-secondary" onclick="wizardNext(1)">← Zurück</button>
-          <button class="btn btn-primary" onclick="wizardNext(3)">Weiter →</button>
-        </div>
+      <div class="wizard-nav"><div></div><button class="btn btn-primary" onclick="wizardNext(2)">Weiter →</button></div>
+    </div>
+    <div class="wizard-step-content" id="step-2">
+      <div class="wizard-title">Welche Skills genau?</div>
+      <div class="wizard-subtitle">Wähle alle die passen. Leer lassen = alle anzeigen.</div>
+      <div id="suchSkillChips"></div>
+      <div class="wizard-nav">
+        <button class="btn btn-secondary" onclick="wizardNext(1)">← Zurück</button>
+        <button class="btn btn-primary" onclick="wizardNext(3)">Weiter →</button>
       </div>
-
-      <div class="wizard-step-content" id="step-3">
-        <div class="wizard-title">Welches Niveau mindestens?</div>
-        <div class="wizard-subtitle">Du siehst alle Mitglieder, die dieses Niveau oder höher haben.</div>
-        <div class="chip-group" id="niveauChips">
-          <div class="chip selected" data-niveau="1" onclick="selectNiveau(this)">🟢 Grundkenntnisse (1+)</div>
-          <div class="chip" data-niveau="2" onclick="selectNiveau(this)">🟡 Solide (2+)</div>
-          <div class="chip" data-niveau="3" onclick="selectNiveau(this)">🔵 Expert:in (3)</div>
-        </div>
-        <div class="wizard-nav">
-          <button class="btn btn-secondary" onclick="wizardNext(2)">← Zurück</button>
-          <button class="btn btn-primary btn-lg" onclick="startSuche()">🔍 Suchen</button>
-        </div>
+    </div>
+    <div class="wizard-step-content" id="step-3">
+      <div class="wizard-title">Welches Niveau mindestens?</div>
+      <div class="wizard-subtitle">Du siehst alle Mitglieder mit diesem Niveau oder höher.</div>
+      <div class="chip-group" id="niveauChips">
+        <div class="chip selected" data-niveau="1" onclick="selectNiveau(this)">🟢 Grundkenntnisse (1+)</div>
+        <div class="chip" data-niveau="2" onclick="selectNiveau(this)">🟡 Solide (2+)</div>
+        <div class="chip" data-niveau="3" onclick="selectNiveau(this)">🔵 Expert:in (3)</div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn btn-secondary" onclick="wizardNext(2)">← Zurück</button>
+        <button class="btn btn-primary btn-lg" onclick="startSuche()">🔍 Suchen</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ── ERGEBNISSE ───────────────────────────────────────────────────── -->
-  <div id="view-ergebnisse" class="view">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px">
-      <div>
-        <h2 style="font-size:1.5rem; color:var(--primary-dark)">Suchergebnis</h2>
-        <p style="color:var(--text-muted)" id="ergebnisSubtitle"></p>
-      </div>
-      <button class="btn btn-outline" onclick="showView('suche')">🔄 Neue Suche</button>
+<!-- ── ERGEBNISSE (Expertise) ── -->
+<div id="view-ergebnisse" class="view">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px">
+    <div><h2 style="font-size:1.5rem; color:var(--primary-dark)">Suchergebnis</h2><p style="color:var(--text-muted)" id="ergebnisSubtitle"></p></div>
+    <button class="btn btn-outline" onclick="showView('suche')">🔄 Neue Suche</button>
+  </div>
+  <div id="ergebnisGrid" class="result-grid"></div>
+</div>
+
+<!-- ── ÜBERSICHT (Expertise) ── -->
+<div id="view-uebersicht" class="view">
+  <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:6px">Alle Mitglieder</h2>
+  <p style="color:var(--text-muted); margin-bottom:12px">Vollständige Expertise-Übersicht · sortiert alphabetisch</p>
+  <div id="uebersichtGrid"></div>
+</div>
+
+<!-- ── WIZARD (Matching) ── -->
+<div id="view-wizard" class="view">
+  <div class="wizard-container">
+    <div class="wizard-progress">
+      <div class="wizard-step-dot active" id="m-dot-1">1</div>
+      <div class="wizard-step-line" id="m-line-1"></div>
+      <div class="wizard-step-dot" id="m-dot-2">2</div>
+      <div class="wizard-step-line" id="m-line-2"></div>
+      <div class="wizard-step-dot" id="m-dot-3">3</div>
+      <div class="wizard-step-line" id="m-line-3"></div>
+      <div class="wizard-step-dot" id="m-dot-4">4</div>
     </div>
-    <div id="niveauLegendeErgebnis" style="display:none; margin-bottom:12px"></div>
-    <div id="ergebnisGrid" class="result-grid"></div>
+    <div class="wizard-step-content active" id="m-step-1">
+      <div class="wizard-title">Was kannst du einbringen?</div>
+      <div class="wizard-subtitle">Wähle alle Fähigkeiten und Interessen, die auf dich zutreffen.</div>
+      <div id="skillChips" class="chip-group"></div>
+      <div class="wizard-nav"><div></div><button class="btn btn-primary" onclick="mWizardNext(2)">Weiter →</button></div>
+    </div>
+    <div class="wizard-step-content" id="m-step-2">
+      <div class="wizard-title">Wie viel Zeit kannst du einbringen?</div>
+      <div class="wizard-subtitle">Wähle das, was am ehesten zu deiner Situation passt.</div>
+      <div class="zeit-option" data-wert="einmalig" onclick="selectZeit(this)"><div class="icon">⚡</div><div><div class="label">Einmalig / Projektbasis</div><div class="desc">Du hilfst bei einem konkreten Projekt oder Event</div></div></div>
+      <div class="zeit-option" data-wert="wenig" onclick="selectZeit(this)"><div class="icon">🌱</div><div><div class="label">Bis 2 Stunden pro Woche</div><div class="desc">Ein kleiner, regelmäßiger Beitrag</div></div></div>
+      <div class="zeit-option" data-wert="mittel" onclick="selectZeit(this)"><div class="icon">🌿</div><div><div class="label">2–5 Stunden pro Woche</div><div class="desc">Regelmäßiges Engagement, aber mit Luft</div></div></div>
+      <div class="zeit-option" data-wert="intensiv" onclick="selectZeit(this)"><div class="icon">🌳</div><div><div class="label">5+ Stunden pro Woche</div><div class="desc">Intensives Engagement, Kernmitglied</div></div></div>
+      <div class="wizard-nav"><button class="btn btn-secondary" onclick="mWizardNext(1)">← Zurück</button><button class="btn btn-primary" onclick="mWizardNext(3)">Weiter →</button></div>
+    </div>
+    <div class="wizard-step-content" id="m-step-3">
+      <div class="wizard-title">Welche Art von Mitarbeit liegt dir?</div>
+      <div class="wizard-subtitle">Mehrfachauswahl möglich.</div>
+      <div class="chip-group" id="typeChips">
+        <div class="chip type-chip" data-wert="praktisch" onclick="toggleChip(this)">🔨 Praktisch / Handwerklich</div>
+        <div class="chip type-chip" data-wert="digital" onclick="toggleChip(this)">💻 Digital / Technisch</div>
+        <div class="chip type-chip" data-wert="kreativ" onclick="toggleChip(this)">🎨 Kreativ / Gestalterisch</div>
+        <div class="chip type-chip" data-wert="kommunikation" onclick="toggleChip(this)">📣 Kommunikation / Vernetzung</div>
+        <div class="chip type-chip" data-wert="organisation" onclick="toggleChip(this)">📋 Organisation / Koordination</div>
+        <div class="chip type-chip" data-wert="sozial" onclick="toggleChip(this)">🤝 Sozial / Begleitend</div>
+        <div class="chip type-chip" data-wert="konzeptionell" onclick="toggleChip(this)">🧠 Konzeptionell / Strategisch</div>
+      </div>
+      <div class="wizard-nav"><button class="btn btn-secondary" onclick="mWizardNext(2)">← Zurück</button><button class="btn btn-primary" onclick="mWizardNext(4)">Weiter →</button></div>
+    </div>
+    <div class="wizard-step-content" id="m-step-4">
+      <div class="wizard-title">Wo bist du?</div>
+      <div class="wizard-subtitle">Optional – hilft beim Finden lokaler Initiativen.</div>
+      <div class="form-group"><label>Deine Postleitzahl (optional)</label><input type="text" id="wizardPlz" placeholder="z.B. 48143" maxlength="5" style="max-width:200px"></div>
+      <div class="chip-group" style="margin-top:8px"><div class="chip" id="chipRemote" onclick="toggleRemoteChip()">🌐 Remote möglich</div></div>
+      <div class="form-hint" style="margin-top:8px">Mit "Remote möglich" werden auch ortsunabhängige Initiativen berücksichtigt.</div>
+      <div class="wizard-nav"><button class="btn btn-secondary" onclick="mWizardNext(3)">← Zurück</button><button class="btn btn-primary btn-lg" onclick="startMatching()">🔍 Meinen Platz finden</button></div>
+    </div>
   </div>
+</div>
 
-  <!-- ── ALLE MITGLIEDER ──────────────────────────────────────────────── -->
-  <div id="view-uebersicht" class="view">
-    <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:6px">Alle Mitglieder</h2>
-    <p style="color:var(--text-muted); margin-bottom:12px">Vollständige Expertise-Übersicht · sortiert alphabetisch</p>
-    <div id="uebersichtGrid"></div>
+<!-- ── RESULTS (Matching) ── -->
+<div id="view-results" class="view">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px">
+    <div><h2 style="font-size:1.5rem; color:var(--primary-dark)">Dein Matching-Ergebnis</h2><p style="color:var(--text-muted)" id="resultSubtitle"></p></div>
+    <button class="btn btn-outline" onclick="showView('wizard')">🔄 Neue Suche</button>
   </div>
+  <div id="resultGrid" class="result-grid"></div>
+</div>
 
-  <!-- ── LOGIN ────────────────────────────────────────────────────────── -->
-  <div id="view-login" class="view">
-    <div style="max-width:420px; margin:0 auto">
-      <div class="card">
-        <h2>Anmelden</h2>
-        <div id="loginError" class="alert alert-error" style="display:none"></div>
-        <div class="form-group">
-          <label>E-Mail</label>
-          <input type="email" id="loginEmail" placeholder="deine@email.de" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label>Passwort</label>
-          <input type="password" id="loginPassword" placeholder="Passwort" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-        </div>
-        <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Anmelden</button>
-        <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:var(--text-muted)" id="loginKontaktText"></p>
-        <hr style="margin: 16px 0; border:none; border-top:1px solid var(--border-gray)">
+<!-- ── ÜBER UNS ── -->
+<div id="view-uber-uns" class="view">
+  <div id="uberUnsExpertise">
+    <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:24px">Über uns</h2>
+    <div class="card"><p id="uberUnsText" style="font-size:1rem; line-height:1.7; white-space:pre-line; color:var(--text)"></p></div>
+  </div>
+  <div id="uberUnsMatching" style="display:none">
+    <div id="uberUnsCustom" style="display:none">
+      <div class="card" style="margin-bottom:24px"><div id="uberUnsCustomText" style="white-space:pre-line; line-height:1.8"></div></div>
+    </div>
+    <div id="uberUnsFest" style="max-width:760px; margin:0 auto">
+      <div style="text-align:center; padding:32px 0 24px"><div style="font-size:3rem; margin-bottom:12px">🐝</div>
+        <h2 style="font-size:1.8rem; color:var(--primary-dark); margin-bottom:10px">Wir kommunizieren wie Bienen</h2>
+        <p style="color:var(--text-muted); max-width:520px; margin:0 auto">Wir folgen dem Bienenkommunikationsprinzip – einem Organisationsprinzip für Zusammenarbeit im Wandel.</p>
+      </div>
+      <div class="card" style="margin-bottom:16px"><h2>Was uns antreibt</h2><p>Transformation gelingt nicht durch Ansagen von oben. Sie gelingt, wenn viele Menschen dort wirken, wo ihre Kraft gebraucht wird. Diese Plattform ist die Brücke: Initiativen machen sichtbar, was sie brauchen. Menschen finden heraus, wo sie passen.</p></div>
+      <div class="card" style="margin-bottom:16px"><h2>Das Bienenprinzip: Rahmen + Autonomie</h2><p>Die Königin gibt keine Befehle. Ihre Pheromone setzen einen <strong>gemeinsamen Rahmen</strong> – Werte, Richtung, Sinn. Innerhalb dieses Rahmens handeln alle autonom, lokal, situativ. Globale Koordination entsteht aus lokalen Regeln. Ohne Zentrale. Ohne Verhandlung.</p><p style="margin-top:10px">Wir folgen diesem Prinzip: Der Rahmen schafft die Verbindung zwischen Bedarf und Beitrag. Was daraus wird, entscheiden die Menschen selbst.</p></div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:16px">
+        <div class="card"><div style="font-size:1.8rem; margin-bottom:8px">🐝</div><h3 style="color:var(--primary-dark); margin-bottom:8px">Vertrauen durch Prüfung</h3><p style="font-size:0.9rem; color:var(--text-muted)">Eine Biene teilt eine Futterquelle nicht mit allen auf einmal. Der Schwarm wächst von Mensch zu Mensch – nur zwischen Menschen, die sich kennen und vertrauen.</p></div>
+        <div class="card"><div style="font-size:1.8rem; margin-bottom:8px">👣</div><h3 style="color:var(--primary-dark); margin-bottom:8px">Stigmergie statt Verhandlung</h3><p style="font-size:0.9rem; color:var(--text-muted)">Bedarfe werden sichtbar gemacht. Wer passt, reagiert spontan. Keine Bitte, kein Auftrag, kein Deal – nur sichtbarer Bedarf und freie Antwort.</p></div>
+        <div class="card"><div style="font-size:1.8rem; margin-bottom:8px">🌀</div><h3 style="color:var(--primary-dark); margin-bottom:8px">Emergente Ordnung</h3><p style="font-size:0.9rem; color:var(--text-muted)">Globale Koordination entsteht aus lokalen Entscheidungen – ohne zentrale Planung, ohne Hierarchie. Ordnung entsteht von selbst, wenn der Rahmen stimmt.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ANLEITUNG (Expertise) ── -->
+<div id="view-anleitung" class="view">
+  <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:6px">Bedienungsanleitung</h2>
+  <p style="color:var(--text-muted); margin-bottom:24px">Wie du das SchwarmFeld nutzt</p>
+  <div class="anleitung-tabs">
+    <button class="btn btn-primary" id="anlTabMitglied" onclick="showAnleitungTab('mitglied')">Für Mitglieder</button>
+    <button class="btn btn-secondary" id="anlTabAdmin" onclick="showAnleitungTab('admin')">Für Admins</button>
+  </div>
+  <div id="anleitung-mitglied" class="anleitung-section active">
+    <div class="card">
+      <h2>Als Mitglied loslegen</h2>
+      <div class="anleitung-step"><div class="anleitung-num">1</div><div class="anleitung-text"><h3>Account erstellen</h3><p>Klicke auf <strong>Anmelden → Jetzt registrieren</strong> und trage Name, E-Mail und Passwort ein. Du kannst dich danach sofort anmelden.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">2</div><div class="anleitung-text"><h3>Profil ausfüllen</h3><p>Nach dem Login gelangst du zu <strong>Mein Profil</strong>. Trage Namen, Kurzbeschreibung, Ort und zeitliches Budget ein.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">3</div><div class="anleitung-text"><h3>Expertise eintragen</h3><p>Im Abschnitt <strong>Meine Expertise</strong> findest du alle Kompetenzbereiche. Niveau: <strong>0 = nicht vorhanden</strong>, <strong>1 = Grundkenntnisse</strong>, <strong>2 = Solide</strong>, <strong>3 = Expert:in</strong>.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">4</div><div class="anleitung-text"><h3>Zur Freischaltung einreichen</h3><p>Sobald du Beschreibung und mindestens eine Expertise eingetragen hast, erscheint der Button <strong>Zur Freischaltung einreichen</strong>. Der Admin schaltet dein Profil frei.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">5</div><div class="anleitung-text"><h3>Expertise suchen</h3><p>Über <strong>Expertise finden</strong> kannst du gezielt nach Mitgliedern suchen. Über <strong>Alle Mitglieder</strong> siehst du die vollständige Übersicht.</p></div></div>
+    </div>
+  </div>
+  <div id="anleitung-admin" class="anleitung-section">
+    <div class="card">
+      <h2>Als Admin</h2>
+      <div class="anleitung-step"><div class="anleitung-num">1</div><div class="anleitung-text"><h3>Erster Login</h3><p>Standard-Zugangsdaten beim ersten Start: <code>admin@example.de</code> / <code>admin1234</code> (sofern keine Umgebungsvariablen gesetzt). Bitte sofort E-Mail und Passwort ändern.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">2</div><div class="anleitung-text"><h3>Mitglieder freischalten</h3><p>Im Tab <strong>Mitglieder</strong> siehst du Profile im Status <strong>Wartet</strong>. Klicke auf <strong>Aktivieren</strong> um das Profil sichtbar zu schalten.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">3</div><div class="anleitung-text"><h3>Skills verwalten</h3><p>Im Tab <strong>Skills</strong> neue Kompetenzen hinzufügen (mit Kategorie: Säule / Methode / Plattform) oder bestehende löschen.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">4</div><div class="anleitung-text"><h3>App-Einstellungen</h3><p>Unter <strong>Einstellungen → App-Einstellungen</strong>: App-Name, Untertitel, Kontakt-E-Mail, Über-uns-Text, Primärfarbe und Modus (expertise / matching).</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HILFE (Matching) ── -->
+<div id="view-hilfe" class="view">
+  <div style="max-width:760px; margin:0 auto">
+    <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:6px">Hilfe &amp; FAQ</h2>
+    <p style="color:var(--text-muted); margin-bottom:28px">Wie funktioniert das Matching?</p>
+    <div class="card" style="margin-bottom:16px"><h2>Was ist diese Plattform?</h2><p>Diese Plattform verbindet Menschen, die sich einbringen wollen, mit Initiativen, die Unterstützung suchen. Wie eine digitale Freiwilligenagentur – speziell für Transformations-Projekte und gesellschaftlichen Wandel.</p></div>
+    <div class="card" style="margin-bottom:16px"><h2>Für Menschen: Wie finde ich meinen Platz?</h2><ol style="padding-left:20px; line-height:2"><li><strong>Fähigkeiten wählen</strong> – Welche Skills bringst du mit?</li><li><strong>Zeit angeben</strong> – Wie viel kannst du einbringen?</li><li><strong>Tätigkeitstyp wählen</strong> – Handwerklich, digital, kreativ …?</li><li><strong>Ort / Remote</strong> – Wo bist du?</li><li><strong>Ergebnisse</strong> – Du siehst passende Initiativen mit Passung in %.</li></ol><p style="margin-top:12px; color:var(--text-muted); font-size:0.9rem">Du brauchst keinen Account. Deine Angaben werden nicht gespeichert.</p></div>
+    <div class="card" style="margin-bottom:16px"><h2>Was bedeutet der Passung-Prozentsatz?</h2><ul style="padding-left:20px; line-height:2; margin-top:8px"><li><strong>Skills</strong> – Wie viele deiner Fähigkeiten sucht die Initiative? (bis 50 Punkte)</li><li><strong>Tätigkeitstypen</strong> – Passen deine bevorzugten Tätigkeiten? (bis 25 Punkte)</li><li><strong>Zeit</strong> – Kannst du den Zeitaufwand leisten? (bis 15 Punkte)</li><li><strong>Remote / Ort</strong> – Passt die Erreichbarkeit? (bis 10 Punkte)</li></ul></div>
+    <div class="card" style="margin-bottom:16px"><h2>Für Initiativen: Anmeldeprozess</h2><p style="color:var(--text-muted); font-size:0.9rem">Registrieren → Profil ausfüllen → Zur Prüfung einreichen → Aktivierung durch Admin (Bienenprinzip: persönlicher Kontakt oder Empfehlung aus dem Schwarm).</p></div>
+    <div class="card"><h2>Kontakt &amp; Fragen</h2><p id="hilfeKontaktText">Für Fragen wende dich an den Administrator.</p></div>
+  </div>
+</div>
+
+<!-- ── LOGIN ── -->
+<div id="view-login" class="view">
+  <div style="max-width:420px; margin:0 auto">
+    <div class="card" id="loginCard">
+      <h2>Anmelden</h2>
+      <div id="loginError" class="alert alert-error" style="display:none"></div>
+      <div class="form-group"><label>E-Mail</label><input type="email" id="loginEmail" placeholder="deine@email.de" autocomplete="email"></div>
+      <div class="form-group"><label>Passwort</label><input type="password" id="loginPassword" placeholder="Passwort" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Anmelden</button>
+      <div id="loginRegisterExpertise" style="display:none; margin-top:16px">
+        <hr style="border:none; border-top:1px solid var(--border-gray); margin-bottom:16px">
         <p style="text-align:center; font-size:0.88rem; color:var(--text-muted)">Noch kein Account?</p>
         <button class="btn btn-outline" style="width:100%; margin-top:8px" onclick="openRegistrierenModal()">✨ Jetzt registrieren</button>
       </div>
+      <div id="loginRegisterMatching" style="display:none; margin-top:16px; text-align:center; font-size:0.88rem; color:var(--text-muted)">
+        Noch kein Zugang? <a href="#" style="color:var(--primary)" onclick="toggleRegister(true);return false">Initiative eintragen →</a>
+      </div>
+    </div>
+    <div class="card" id="registerCard" style="display:none; margin-top:16px">
+      <h2>Initiative eintragen</h2>
+      <div id="registerError" class="alert alert-error" style="display:none"></div>
+      <div id="registerSuccess" class="alert alert-success" style="display:none"></div>
+      <div class="form-group"><label>Name der Initiative</label><input type="text" id="regAnzeigename" placeholder="z.B. Gemeinschaftsgarten Nord"></div>
+      <div class="form-group"><label>Website (optional)</label><input type="url" id="regWebsite" placeholder="https://..."></div>
+      <div class="form-group"><label>E-Mail</label><input type="email" id="regEmail" placeholder="deine@email.de"></div>
+      <div class="form-group"><label>Passwort</label><input type="password" id="regPassword" placeholder="Mindestens 6 Zeichen"></div>
+      <div class="alert alert-info" style="font-size:0.88rem; margin-bottom:12px">🐝 Registrieren und Profil ausfüllen geht sofort. Aktivierung erfolgt nach persönlichem Kontakt oder Empfehlung aus dem Schwarm.</div>
+      <button class="btn btn-primary" style="width:100%" onclick="doRegistrierung()">Jetzt eintragen</button>
+      <p style="text-align:center; margin-top:12px; font-size:0.88rem; color:var(--text-muted)">Bereits registriert? <a href="#" style="color:var(--primary)" onclick="toggleRegister(false);return false">← Anmelden</a></p>
+    </div>
+    <p style="text-align:center; margin-top:12px; font-size:0.82rem; color:var(--text-muted)" id="loginKontaktText"></p>
+  </div>
+</div>
+
+<!-- ── MITGLIED-DASHBOARD (Expertise) ── -->
+<div id="view-mitglied-dashboard" class="view">
+  <h2 style="margin-bottom:20px; color:var(--primary-dark)">Mein Profil</h2>
+  <div id="mitgliedSavedAlert" class="alert alert-success" style="display:none">✓ Profil gespeichert!</div>
+  <div id="mitgliedSaveError" class="alert alert-error" style="display:none"></div>
+  <div id="mitgliedStatusBox" style="display:none; margin-bottom:16px; padding:16px; border-radius:8px; border:1px solid var(--border-gray)"></div>
+  <div class="card">
+    <h2>Grunddaten</h2>
+    <div class="form-row">
+      <div class="form-group"><label>Dein Name *</label><input type="text" id="mName" placeholder="Vorname Nachname"></div>
+      <div class="form-group"><label>Ort (optional)</label><input type="text" id="mOrt" placeholder="z.B. Münster"></div>
+    </div>
+    <div class="form-group"><label>Kurzbeschreibung</label><textarea id="mBeschreibung" rows="3" placeholder="Ein paar Sätze über dich und deine Motivation."></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label>Kontakt-E-Mail (wird sichtbar)</label><input type="email" id="mKontaktEmail" placeholder="deine@email.de"></div>
+      <div class="form-group"><label>Zeitliches Budget pro Woche</label><input type="text" id="mZeitliches" placeholder="z.B. 4–8 Std."></div>
+    </div>
+    <div class="form-group"><label>Was möchtest du (noch) lernen?</label><input type="text" id="mLerninteressen" placeholder="z.B. Facilitation, Videoschnitt …"></div>
+    <div class="form-group"><label>Links / Webseiten</label><div id="urlsList" style="margin-bottom:8px"></div><button type="button" class="btn btn-secondary btn-sm" onclick="addUrlRow()">+ Link hinzufügen</button></div>
+  </div>
+  <div class="card">
+    <h2>Meine Expertise</h2>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px"><strong>0 = nicht vorhanden</strong> · <strong>1 = Grundkenntnisse</strong> · <strong>2 = Solide</strong> · <strong>3 = Expert:in</strong>. Nur Einträge &gt; 0 erscheinen im Profil.</p>
+    <div id="skillGruppen"></div>
+  </div>
+  <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+    <button class="btn btn-primary btn-lg" id="btnSaveMitglied" onclick="saveMitglied()">💾 Profil speichern</button>
+    <button class="btn btn-lg" id="btnEinreichen" onclick="profilEinreichen()" style="display:none; background:var(--primary-dark); color:white">✓ Zur Freischaltung einreichen</button>
+    <button class="btn btn-secondary btn-lg" onclick="openPasswortModal()">🔑 Passwort ändern</button>
+  </div>
+</div>
+
+<!-- ── INITIATIVE-DASHBOARD (Matching) ── -->
+<div id="view-initiative-dashboard" class="view">
+  <h2 style="margin-bottom:20px; color:var(--primary-dark)">Mein Initiative-Profil</h2>
+  <div id="initiativeSavedAlert" class="alert alert-success" style="display:none">✓ Profil gespeichert!</div>
+  <div id="initiativeSaveError" class="alert alert-error" style="display:none"></div>
+  <div id="initiativeStatusBox" style="display:none; margin-bottom:16px; padding:16px; border-radius:8px; border:1px solid var(--border-gray)"></div>
+  <div class="card">
+    <h2>Grunddaten</h2>
+    <div class="form-row">
+      <div class="form-group"><label>Name der Initiative *</label><input type="text" id="iName" placeholder="z.B. Gemeinschaftsgarten Nord"></div>
+      <div class="form-group"><label>Offene Plätze</label><input type="text" id="iOffenePlaetze" placeholder="z.B. 3 oder 'mehrere'"></div>
+    </div>
+    <div class="form-group"><label>Beschreibung</label><textarea id="iBeschreibung" rows="4" placeholder="Was macht eure Initiative? Wofür steht ihr?"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label>Website (optional)</label><input type="url" id="iWebsite" placeholder="https://..."></div>
+      <div class="form-group"><label>Kontakt-E-Mail</label><input type="email" id="iKontaktEmail" placeholder="kontakt@initiative.de"></div>
+    </div>
+    <div class="form-group"><label>Ansprechperson (optional)</label><input type="text" id="iKontaktName" placeholder="Name der Kontaktperson"></div>
+  </div>
+  <div class="card">
+    <h2>Standort &amp; Erreichbarkeit</h2>
+    <div class="form-row">
+      <div class="form-group"><label>Ort</label><input type="text" id="iOrt" placeholder="z.B. Hamburg"></div>
+      <div class="form-group"><label>PLZ</label><input type="text" id="iPlz" placeholder="z.B. 20095" maxlength="5"></div>
+    </div>
+    <div class="form-group"><label><input type="checkbox" id="iRemote" style="width:auto; margin-right:6px">Remote-Mitarbeit möglich</label></div>
+  </div>
+  <div class="card">
+    <h2>Was wir suchen</h2>
+    <div class="form-group">
+      <label>Zeitaufwand für Mitarbeitende (Mehrfachauswahl)</label>
+      <div class="chip-group" id="iZeitaufwandChips">
+        <div class="chip" data-wert="einmalig" onclick="toggleChip(this)">⚡ Einmalig / Projektbasis</div>
+        <div class="chip" data-wert="wenig" onclick="toggleChip(this)">🌱 Bis 2h pro Woche</div>
+        <div class="chip" data-wert="mittel" onclick="toggleChip(this)">🌿 2–5h pro Woche</div>
+        <div class="chip" data-wert="intensiv" onclick="toggleChip(this)">🌳 5h+ pro Woche</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tätigkeitstypen</label>
+      <div class="chip-group" id="iTypeChips">
+        <div class="chip type-chip" data-wert="praktisch" onclick="toggleChip(this)">🔨 Praktisch</div>
+        <div class="chip type-chip" data-wert="digital" onclick="toggleChip(this)">💻 Digital</div>
+        <div class="chip type-chip" data-wert="kreativ" onclick="toggleChip(this)">🎨 Kreativ</div>
+        <div class="chip type-chip" data-wert="kommunikation" onclick="toggleChip(this)">📣 Kommunikation</div>
+        <div class="chip type-chip" data-wert="organisation" onclick="toggleChip(this)">📋 Organisation</div>
+        <div class="chip type-chip" data-wert="sozial" onclick="toggleChip(this)">🤝 Sozial</div>
+        <div class="chip type-chip" data-wert="konzeptionell" onclick="toggleChip(this)">🧠 Konzeptionell</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Gesuchte Fähigkeiten / Skills</label>
+      <div class="chip-group" id="iSkillChips"></div>
+      <div style="margin-top:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+        <input type="text" id="skillAnfrageInput" placeholder="Skill fehlt? Hier beantragen …" style="flex:1; min-width:180px; font-size:0.88rem; padding:6px 10px; border:1px solid var(--border-gray); border-radius:6px">
+        <button class="btn btn-secondary btn-sm" onclick="skillAnfrageStellen()">Anfragen</button>
+      </div>
+      <div id="skillAnfrageMsg" style="display:none; font-size:0.85rem; margin-top:6px"></div>
     </div>
   </div>
+  <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+    <button class="btn btn-primary btn-lg" id="btnSaveInitiative" onclick="saveInitiative()">💾 Profil speichern</button>
+    <button class="btn btn-lg" id="btnEinreichenInitiative" onclick="profilEinreichen()" style="display:none; background:var(--primary-dark); color:white">🐝 Zur Prüfung einreichen</button>
+    <button class="btn btn-secondary btn-lg" onclick="openPasswortModal()">🔑 Passwort ändern</button>
+  </div>
+</div>
 
-  <!-- ── MITGLIED-DASHBOARD ───────────────────────────────────────────── -->
-  <div id="view-mitglied-dashboard" class="view">
-    <h2 style="margin-bottom:20px; color:var(--primary-dark)">Mein Profil</h2>
-    <div id="mitgliedSavedAlert" class="alert alert-success" style="display:none">✓ Profil gespeichert!</div>
-    <div id="mitgliedSaveError" class="alert alert-error" style="display:none"></div>
-    <div id="mitgliedStatusBox" style="display:none; margin-bottom:16px; padding:16px; border-radius:8px; border:1px solid var(--border-gray)"></div>
+<!-- ── ADMIN DASHBOARD ── -->
+<div id="view-admin-dashboard" class="view">
+  <div style="display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap">
+    <button class="btn btn-primary" id="adminTabEntities" onclick="showAdminTab('entities')">Mitglieder</button>
+    <button class="btn btn-secondary" id="adminTabSkills" onclick="showAdminTab('skills')">Skills</button>
+    <button class="btn btn-secondary" id="adminTabEinstellungen" onclick="showAdminTab('einstellungen')">⚙️ Einstellungen</button>
+    <button class="btn btn-secondary" style="margin-left:auto" onclick="openPasswortModal()">🔑 Passwort ändern</button>
+  </div>
 
-    <div class="card">
-      <h2>Grunddaten</h2>
+  <div id="adminTabContent-entities">
+    <div class="card" style="margin-bottom:16px">
+      <h2>Neuen Account anlegen</h2>
+      <div id="newAccountError" class="alert alert-error" style="display:none"></div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Dein Name *</label>
-          <input type="text" id="mName" placeholder="Vorname Nachname">
-        </div>
-        <div class="form-group">
-          <label>Ort (optional)</label>
-          <input type="text" id="mOrt" placeholder="z.B. Münster">
-        </div>
+        <div class="form-group"><label>E-Mail</label><input type="email" id="newEmail" placeholder="nutzer@example.de"></div>
+        <div class="form-group"><label id="newNameLabel">Name</label><input type="text" id="newAnzeigename" placeholder="Name"></div>
       </div>
-      <div class="form-group">
-        <label>Kurzbeschreibung — wer bist du, was treibt dich an?</label>
-        <textarea id="mBeschreibung" rows="3" placeholder="Ein paar Sätze über dich und deine Motivation bei System Delta."></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Kontakt-E-Mail (wird für andere sichtbar)</label>
-          <input type="email" id="mKontaktEmail" placeholder="deine@email.de">
-        </div>
-        <div class="form-group">
-          <label>Zeitliches Budget pro Woche</label>
-          <input type="text" id="mZeitliches" placeholder="z.B. 4–8 Std., je nach Woche">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Was möchtest du (noch) lernen?</label>
-        <input type="text" id="mLerninteressen" placeholder="z.B. Mobilisierung & Advocacy, Videoschnitt …">
-      </div>
-      <div class="form-group">
-        <label>Links / Webseiten</label>
-        <div id="urlsList" style="margin-bottom:8px"></div>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="addUrlRow()">+ Link hinzufügen</button>
-      </div>
+      <div class="form-group" style="max-width:300px"><label>Temporäres Passwort</label><input type="text" id="newPassword" placeholder="Mindestens 6 Zeichen"></div>
+      <button class="btn btn-primary" onclick="createAccount()">Account anlegen</button>
     </div>
-
     <div class="card">
-      <h2>Meine Expertise</h2>
-      <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px">
-        Bewerte jede Kompetenz auf einer Skala von 0–3: <strong>0 = nicht vorhanden</strong>, <strong>1 = Grundkenntnisse</strong>, <strong>2 = Solide</strong>, <strong>3 = Expert:in</strong>. Nur Einträge &gt; 0 erscheinen im Profil.
-      </p>
-      <div id="skillGruppen"></div>
-    </div>
-
-    <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; align-items:center">
-      <button class="btn btn-primary btn-lg" id="btnSaveMitglied" onclick="saveMitglied()">💾 Profil speichern</button>
-      <button class="btn btn-lg" id="btnEinreichen" onclick="profilEinreichen()" style="display:none; background:var(--primary-dark); color:white">✓ Zur Freischaltung einreichen</button>
-      <button class="btn btn-secondary btn-lg" onclick="openPasswortModal()">🔑 Passwort ändern</button>
+      <h2 id="adminEntitiesHeading">Alle Mitglieder &amp; Accounts</h2>
+      <div id="adminEntitiesContent"></div>
     </div>
   </div>
 
-  <!-- ── ADMIN DASHBOARD ──────────────────────────────────────────────── -->
-  <div id="view-admin-dashboard" class="view">
-    <div style="display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap">
-      <button class="btn btn-primary" id="adminTabMitglieder" onclick="showAdminTab('mitglieder')">Mitglieder</button>
-      <button class="btn btn-secondary" id="adminTabSkills" onclick="showAdminTab('skills')">Skills</button>
-      <button class="btn btn-secondary" id="adminTabEinstellungen" onclick="showAdminTab('einstellungen')">⚙️ Einstellungen</button>
-      <button class="btn btn-secondary" style="margin-left:auto" onclick="openPasswortModal()">🔑 Passwort ändern</button>
+  <div id="adminTabContent-skills" style="display:none">
+    <div class="card" id="skillAnfragenCard" style="display:none; margin-bottom:16px">
+      <h2>📬 Anfragen von Initiativen</h2>
+      <div id="skillAnfragenList"></div>
     </div>
-
-    <div id="adminTabContent-mitglieder">
-      <div class="card" style="margin-bottom:16px">
-        <h2>Neuen Account anlegen</h2>
-        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px">Alternativ können sich Mitglieder auch selbst über den Registrieren-Button auf der Login-Seite anmelden.</p>
-        <div id="newAccountError" class="alert alert-error" style="display:none"></div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>E-Mail</label>
-            <input type="email" id="newEmail" placeholder="mitglied@systemdelta.de">
-          </div>
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" id="newAnzeigename" placeholder="Vorname Nachname">
-          </div>
+    <div class="card" style="margin-bottom:16px">
+      <h2>Neuen Skill hinzufügen</h2>
+      <div id="newSkillError" class="alert alert-error" style="display:none"></div>
+      <div style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap">
+        <div class="form-group" style="flex:2; margin:0; min-width:180px"><input type="text" id="newSkillName" placeholder="z.B. Crowdfunding" onkeydown="if(event.key==='Enter')addSkill()"></div>
+        <div class="form-group" id="newSkillKatWrapper" style="flex:1; margin:0; min-width:140px">
+          <select id="newSkillKat"><option value="Säule">Säule (Thema)</option><option value="Methode" selected>Methode</option><option value="Plattform">Plattform</option><option value="Allgemein">Allgemein</option></select>
         </div>
-        <div class="form-group" style="max-width:300px">
-          <label>Temporäres Passwort</label>
-          <input type="text" id="newPassword" placeholder="Mindestens 6 Zeichen">
-        </div>
-        <button class="btn btn-primary" onclick="createAccount()">Account anlegen</button>
-      </div>
-      <div class="card">
-        <h2>Alle Mitglieder & Accounts</h2>
-        <div id="adminMitgliederTable"></div>
+        <button class="btn btn-primary" onclick="addSkill()">Hinzufügen</button>
       </div>
     </div>
-
-    <div id="adminTabContent-skills" style="display:none">
-      <div class="card" style="margin-bottom:16px">
-        <h2>Neuen Skill hinzufügen</h2>
-        <div id="newSkillError" class="alert alert-error" style="display:none"></div>
-        <div style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap">
-          <div class="form-group" style="flex:2; margin:0; min-width:180px">
-            <input type="text" id="newSkillName" placeholder="z.B. Crowdfunding" onkeydown="if(event.key==='Enter')addSkill()">
-          </div>
-          <div class="form-group" style="flex:1; margin:0; min-width:140px">
-            <select id="newSkillKat">
-              <option value="Säule">Säule (Thema)</option>
-              <option value="Methode" selected>Methode</option>
-              <option value="Plattform">Plattform</option>
-              <option value="Allgemein">Allgemein</option>
-            </select>
-          </div>
-          <button class="btn btn-primary" onclick="addSkill()">Hinzufügen</button>
-        </div>
-      </div>
-      <div class="card">
-        <h2>Alle Skills</h2>
-        <div id="adminSkillsTable"></div>
-      </div>
-    </div>
-
-    <div id="adminTabContent-einstellungen" style="display:none">
-      <div class="card" style="margin-bottom:16px">
-        <h2>Mein Admin-Account</h2>
-        <div id="emailError" class="alert alert-error" style="display:none"></div>
-        <div id="emailSuccess" class="alert alert-success" style="display:none">E-Mail geändert! Bitte melde dich neu an.</div>
-        <div class="form-group">
-          <label>Neue E-Mail-Adresse</label>
-          <input type="email" id="cfgNeueEmail" placeholder="neue@email.de">
-        </div>
-        <div class="form-group">
-          <label>Aktuelles Passwort (zur Bestätigung)</label>
-          <input type="password" id="cfgEmailPasswort" placeholder="Dein aktuelles Passwort">
-        </div>
-        <button class="btn btn-primary" onclick="changeAdminEmail()">E-Mail ändern</button>
-      </div>
-      <div class="card">
-        <h2>App-Einstellungen</h2>
-        <div id="configError" class="alert alert-error" style="display:none"></div>
-        <div id="configSuccess" class="alert alert-success" style="display:none">Gespeichert!</div>
-        <div class="form-group">
-          <label>App-Name</label>
-          <input type="text" id="cfgAppName">
-        </div>
-        <div class="form-group">
-          <label>Untertitel</label>
-          <input type="text" id="cfgAppSubtitle">
-        </div>
-        <div class="form-group">
-          <label>Kontakt-E-Mail (für Login-Seite)</label>
-          <input type="email" id="cfgKontaktEmail">
-        </div>
-        <div class="form-group">
-          <label>Über uns (optional)</label>
-          <textarea id="cfgUberUns" rows="6"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Primärfarbe</label>
-          <div style="display:flex;align-items:center;gap:12px">
-            <input type="color" id="cfgPrimaryColor" style="width:48px;height:36px;padding:2px;border:1px solid #d1d5db;border-radius:6px;cursor:pointer">
-            <span id="cfgPrimaryColorHex" style="font-family:monospace;font-size:0.9rem;color:#374151"></span>
-          </div>
-        </div>
-        <button class="btn btn-primary" onclick="saveConfig()">💾 Speichern</button>
-      </div>
-    </div>
+    <div class="card"><h2>Alle Skills</h2><div id="adminSkillsTable"></div></div>
   </div>
 
-  <!-- ── ÜBER UNS ─────────────────────────────────────────────────────── -->
-  <div id="view-ueber-uns" class="view">
-    <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:24px">Über uns</h2>
+  <div id="adminTabContent-einstellungen" style="display:none">
+    <div class="card" style="margin-bottom:16px">
+      <h2>Mein Admin-Account</h2>
+      <div id="emailError" class="alert alert-error" style="display:none"></div>
+      <div id="emailSuccess" class="alert alert-success" style="display:none">E-Mail geändert! Bitte neu anmelden.</div>
+      <div class="form-group"><label>Neue E-Mail-Adresse</label><input type="email" id="cfgNeueEmail" placeholder="neue@email.de"></div>
+      <div class="form-group"><label>Aktuelles Passwort (zur Bestätigung)</label><input type="password" id="cfgEmailPasswort" placeholder="Dein aktuelles Passwort"></div>
+      <button class="btn btn-primary" onclick="changeAdminEmail()">E-Mail ändern</button>
+    </div>
     <div class="card">
-      <p id="uberUnsText" style="font-size:1rem; line-height:1.7; white-space:pre-line; color:var(--text)"></p>
+      <h2>App-Einstellungen</h2>
+      <div id="configError" class="alert alert-error" style="display:none"></div>
+      <div id="configSuccess" class="alert alert-success" style="display:none">Gespeichert!</div>
+      <div class="form-group"><label>App-Name</label><input type="text" id="cfgAppName"></div>
+      <div class="form-group"><label>Untertitel</label><input type="text" id="cfgAppSubtitle"></div>
+      <div class="form-group"><label>Kontakt-E-Mail</label><input type="email" id="cfgKontaktEmail"></div>
+      <div class="form-group"><label>Über uns (optional)</label><textarea id="cfgUberUns" rows="6"></textarea></div>
+      <div class="form-group"><label>Primärfarbe</label><div style="display:flex;align-items:center;gap:12px"><input type="color" id="cfgPrimaryColor" style="width:48px;height:36px;padding:2px;border:1px solid #d1d5db;border-radius:6px;cursor:pointer"><span id="cfgPrimaryColorHex" style="font-family:monospace;font-size:0.9rem;color:#374151"></span></div></div>
+      <div class="form-group"><label>Modus</label><select id="cfgModus"><option value="expertise">expertise – Mitglieder tragen Skills ein</option><option value="matching">matching – Initiativen suchen Mitarbeitende</option></select></div>
+      <button class="btn btn-primary" onclick="saveConfig()">💾 Speichern</button>
     </div>
   </div>
-
-  <!-- ── ANLEITUNG ────────────────────────────────────────────────────── -->
-  <div id="view-anleitung" class="view">
-    <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:6px">Bedienungsanleitung</h2>
-    <p style="color:var(--text-muted); margin-bottom:24px">Wie du das SchwarmFeld · System Delta nutzt</p>
-
-    <div class="anleitung-tabs">
-      <button class="btn btn-primary" id="anlTabMitglied" onclick="showAnleitungTab('mitglied')">Für Mitglieder</button>
-      <button class="btn btn-secondary" id="anlTabAdmin" onclick="showAnleitungTab('admin')">Für Admins</button>
-    </div>
-
-    <div id="anleitung-mitglied" class="anleitung-section active">
-      <div class="card">
-        <h2>Als Mitglied loslegen</h2>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">1</div>
-          <div class="anleitung-text">
-            <h3>Account erstellen</h3>
-            <p>Klicke auf <strong>Anmelden → Jetzt registrieren</strong> und trage Name, E-Mail und ein Passwort ein. Der Admin wird benachrichtigt. Du kannst dich danach sofort anmelden.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">2</div>
-          <div class="anleitung-text">
-            <h3>Profil ausfüllen</h3>
-            <p>Nach dem Login gelangst du zu <strong>Mein Profil</strong>. Trage deinen Namen, eine Kurzbeschreibung, deinen Ort und dein zeitliches Budget ein.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">3</div>
-          <div class="anleitung-text">
-            <h3>Expertise eintragen</h3>
-            <p>Im Abschnitt <strong>Meine Expertise</strong> findest du alle Kompetenzbereiche. Setze für jede Kompetenz ein Niveau: <strong>0 = nicht vorhanden</strong>, <strong>1 = Grundkenntnisse</strong>, <strong>2 = Solide</strong>, <strong>3 = Expert:in</strong>. Nur Einträge mit Niveau > 0 erscheinen in deinem Profil.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">4</div>
-          <div class="anleitung-text">
-            <h3>Profil speichern</h3>
-            <p>Klicke auf <strong>Profil speichern</strong>. Dein Profil wird gespeichert und bleibt im Entwurf.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">5</div>
-          <div class="anleitung-text">
-            <h3>Zur Freischaltung einreichen</h3>
-            <p>Sobald du eine Kurzbeschreibung und mindestens eine Expertise eingetragen hast, erscheint der Button <strong>Zur Freischaltung einreichen</strong>. Danach prüft der Admin dein Profil und schaltet es frei. Du siehst den Status direkt oben auf deiner Profilseite.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">6</div>
-          <div class="anleitung-text">
-            <h3>Expertise suchen</h3>
-            <p>Über <strong>Expertise finden</strong> kannst du gezielt nach Mitgliedern suchen — nach Thema, Methode oder Plattform-Wissen, und nach Mindest-Niveau filtern. Über <strong>Alle Mitglieder</strong> siehst du die vollständige Übersicht.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">7</div>
-          <div class="anleitung-text">
-            <h3>Passwort ändern</h3>
-            <p>In <strong>Mein Profil</strong> → Button <strong>Passwort ändern</strong>. Du brauchst dein aktuelles Passwort.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="anleitung-admin" class="anleitung-section">
-      <div class="card">
-        <h2>Als Admin</h2>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">1</div>
-          <div class="anleitung-text">
-            <h3>Login als Admin</h3>
-            <p>Standard-Zugangsdaten beim ersten Start: <code>admin@systemdelta.de</code> / <code>admin1234</code> (sofern keine Umgebungsvariablen gesetzt). Bitte sofort unter <strong>⚙️ Admin → Einstellungen</strong> E-Mail und Passwort ändern.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">2</div>
-          <div class="anleitung-text">
-            <h3>E-Mail und Passwort ändern</h3>
-            <p>Unter <strong>⚙️ Admin → Einstellungen → Mein Admin-Account</strong> kannst du die Admin-E-Mail ändern. Passwort ändern über den Button <strong>🔑 Passwort ändern</strong> oben rechts im Admin-Bereich.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">3</div>
-          <div class="anleitung-text">
-            <h3>Mitglieder freischalten</h3>
-            <p>Im Tab <strong>Mitglieder</strong> siehst du oben alle Profile im Status <strong>Wartet</strong> — Mitglieder, die ihr Profil zur Prüfung eingereicht haben. Klicke auf <strong>Aktivieren</strong> um das Profil sichtbar zu schalten. Mit <strong>Deaktiv.</strong> kannst du es wieder ausblenden.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">4</div>
-          <div class="anleitung-text">
-            <h3>Accounts anlegen</h3>
-            <p>Im Tab <strong>Mitglieder</strong> → Formular oben: E-Mail, Name und ein temporäres Passwort eingeben. Das Mitglied kann sich danach anmelden und das Passwort selbst ändern. Alternativ können Mitglieder sich über die Registrierungsfunktion selbst registrieren.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">5</div>
-          <div class="anleitung-text">
-            <h3>Passwort eines Mitglieds zurücksetzen</h3>
-            <p>Im Tab <strong>Mitglieder</strong> → neben dem Account-Eintrag auf das <strong>🔑</strong>-Symbol klicken → neues Passwort vergeben.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">6</div>
-          <div class="anleitung-text">
-            <h3>Skills verwalten</h3>
-            <p>Im Tab <strong>Skills</strong> kannst du neue Kompetenzen hinzufügen (mit Kategorie: Säule / Methode / Plattform) oder bestehende löschen. Gelöschte Skills werden aus allen Profilen entfernt.</p>
-          </div>
-        </div>
-
-        <div class="anleitung-step">
-          <div class="anleitung-num">7</div>
-          <div class="anleitung-text">
-            <h3>App-Einstellungen</h3>
-            <p>Unter <strong>Einstellungen → App-Einstellungen</strong>: App-Name, Untertitel, Kontakt-E-Mail (erscheint auf der Login-Seite), und ein optionaler "Über uns"-Text.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
 </main>
 
-<!-- Passwort setzen (Admin) -->
+<!-- Modals -->
 <div class="modal-overlay" id="passwortSetzenModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('passwortSetzenModal')">✕</button>
@@ -661,15 +627,11 @@
     <p id="passwortSetzenEmail" style="color:var(--text-muted); margin-bottom:16px; font-size:0.9rem"></p>
     <div id="passwortSetzenError" class="alert alert-error" style="display:none"></div>
     <div id="passwortSetzenSuccess" class="alert alert-success" style="display:none">Passwort gesetzt!</div>
-    <div class="form-group">
-      <label>Neues Passwort</label>
-      <input type="text" id="passwortSetzenWert" placeholder="Mindestens 6 Zeichen">
-    </div>
+    <div class="form-group"><label>Neues Passwort</label><input type="text" id="passwortSetzenWert" placeholder="Mindestens 6 Zeichen"></div>
     <button class="btn btn-primary" onclick="doPasswortSetzen()">Passwort setzen</button>
   </div>
 </div>
 
-<!-- Passwort ändern -->
 <div class="modal-overlay" id="passwortModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('passwortModal')">✕</button>
@@ -683,26 +645,16 @@
   </div>
 </div>
 
-<!-- Registrieren -->
 <div class="modal-overlay" id="registrierenModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('registrierenModal')">✕</button>
     <h2>Registrieren</h2>
-    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px">Nach der Registrierung kannst du dich sofort anmelden und dein Profil ausfüllen. Die Sichtbarkeit im Netzwerk wird nach Prüfung durch den Admin freigeschaltet.</p>
+    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px">Nach der Registrierung kannst du dich sofort anmelden und dein Profil ausfüllen. Die Sichtbarkeit wird nach Prüfung freigeschaltet.</p>
     <div id="regError" class="alert alert-error" style="display:none"></div>
     <div id="regSuccess" class="alert alert-success" style="display:none">Registrierung erfolgreich! Du kannst dich jetzt anmelden.</div>
-    <div class="form-group">
-      <label>Dein Name</label>
-      <input type="text" id="regName" placeholder="Vorname Nachname">
-    </div>
-    <div class="form-group">
-      <label>E-Mail</label>
-      <input type="email" id="regEmail" placeholder="deine@email.de">
-    </div>
-    <div class="form-group">
-      <label>Passwort (mind. 6 Zeichen)</label>
-      <input type="password" id="regPassword" placeholder="Passwort wählen" onkeydown="if(event.key==='Enter')doRegistrieren()">
-    </div>
+    <div class="form-group"><label>Dein Name</label><input type="text" id="regName" placeholder="Vorname Nachname"></div>
+    <div class="form-group"><label>E-Mail</label><input type="email" id="regEmail" placeholder="deine@email.de"></div>
+    <div class="form-group"><label>Passwort (mind. 6 Zeichen)</label><input type="password" id="regPassword" placeholder="Passwort wählen" onkeydown="if(event.key==='Enter')doRegistrieren()"></div>
     <button class="btn btn-primary" style="width:100%" onclick="doRegistrieren()">Registrieren</button>
     <p style="font-size:0.78rem; color:var(--text-muted); margin-top:12px; text-align:center">Mit der Registrierung nimmst du unsere <a href="https://andreas-artmann.de/datenschutz-apps/" target="_blank" rel="noopener" style="color:var(--primary)">Datenschutzerklärung</a> zur Kenntnis.</p>
   </div>
@@ -711,49 +663,41 @@
 <div id="toast"></div>
 
 <script>
-// ─── State ──────────────────────────────────────────────────────────────────
-const NIVEAU_LEGENDE = `<div style="display:flex;flex-wrap:wrap;gap:16px;font-size:0.82rem;color:var(--text-muted);align-items:center">
-  <span style="font-weight:600;color:var(--text)">Niveau:</span>
-  <span style="display:flex;align-items:center;gap:5px"><span class="niveau-dot niveau-dot-1" style="width:10px;height:10px;flex-shrink:0"></span> 1 – Grundkenntnisse</span>
-  <span style="display:flex;align-items:center;gap:5px"><span class="niveau-dot niveau-dot-2" style="width:10px;height:10px;flex-shrink:0"></span> 2 – Solide</span>
-  <span style="display:flex;align-items:center;gap:5px"><span class="niveau-dot niveau-dot-3" style="width:10px;height:10px;flex-shrink:0"></span> 3 – Expert:in</span>
-</div>`;
+// ─── State ───────────────────────────────────────────────────────────────────
+const NIVEAU_LEGENDE = `<div style="display:flex;flex-wrap:wrap;gap:16px;font-size:0.82rem;color:var(--text-muted);align-items:center"><span style="font-weight:600;color:var(--text)">Niveau:</span><span style="display:flex;align-items:center;gap:5px"><span class="niveau-dot niveau-dot-1" style="width:10px;height:10px;flex-shrink:0"></span> 1 – Grundkenntnisse</span><span style="display:flex;align-items:center;gap:5px"><span class="niveau-dot niveau-dot-2" style="width:10px;height:10px;flex-shrink:0"></span> 2 – Solide</span><span style="display:flex;align-items:center;gap:5px"><span class="niveau-dot niveau-dot-3" style="width:10px;height:10px;flex-shrink:0"></span> 3 – Expert:in</span></div>`;
 
-let currentUser = null;
-let allSkills = [];
-let appConfig = { app_name: 'SchwarmFeld · System Delta', app_subtitle: '', kontakt_email: '', primary_color: '#2563eb' };
-
+let currentUser = null, allSkills = [], appModus = 'expertise';
+let appConfig = { app_name: 'SchwarmFeld', app_subtitle: '', kontakt_email: '', primary_color: '#2563eb', modus: 'expertise' };
 const suchData = { kategorien: [], skillIds: [], minNiveau: 1 };
 const skillNiveaus = {};
+const wizardData = { skills: [], zeit: null, typen: [], plz: '', remote: false };
 
-const PROTECTED_VIEWS = ['suche', 'uebersicht', 'ergebnisse'];
-
-// ─── Init ────────────────────────────────────────────────────────────────────
+// ─── Init ─────────────────────────────────────────────────────────────────────
 async function init() {
   const token = localStorage.getItem('sfsd_token');
   if (token) {
     try {
       const data = await api('GET', '/api/auth/me', null, token);
       currentUser = { ...data, token };
-      updateHeaderUser();
     } catch { localStorage.removeItem('sfsd_token'); }
   }
   try { appConfig = await api('GET', '/api/config'); applyConfig(); } catch {}
-
-  if (currentUser) {
-    try { allSkills = await api('GET', '/api/skills'); } catch {}
-  }
+  try { allSkills = await api('GET', '/api/skills'); } catch {}
+  if (appModus === 'matching') renderSkillChips();
+  updateHeaderUser();
 
   const hash = location.hash.replace('#', '');
-  const startView = (hash && document.getElementById('view-' + hash)) ? hash : 'landing';
-  if (PROTECTED_VIEWS.includes(startView) && !currentUser) {
-    showView('landing');
-  } else {
-    showView(startView);
-    if (startView === 'uebersicht') loadUebersicht();
-    if (startView === 'mitglied-dashboard' && currentUser?.role === 'mitglied') loadMitgliedProfil();
-    if (startView === 'admin-dashboard' && currentUser?.role === 'admin') showAdminTab('mitglieder');
-  }
+  const validViews = ['landing','suche','uebersicht','ergebnisse','wizard','results','uber-uns','anleitung','hilfe','login','mitglied-dashboard','initiative-dashboard','admin-dashboard'];
+  const startView = (hash && validViews.includes(hash)) ? hash : 'landing';
+  const protected_e = ['suche','uebersicht','ergebnisse','mitglied-dashboard','admin-dashboard'];
+  const protected_m = ['initiative-dashboard','admin-dashboard'];
+  const prot = appModus === 'expertise' ? protected_e : protected_m;
+  if (prot.includes(startView) && !currentUser) { showView('landing'); return; }
+  showView(startView);
+  if (startView === 'uebersicht') loadUebersicht();
+  if (startView === 'mitglied-dashboard' && currentUser?.role === 'mitglied') loadMitgliedProfil();
+  if (startView === 'initiative-dashboard' && currentUser?.role === 'initiative') loadInitiativeProfil();
+  if (startView === 'admin-dashboard' && currentUser?.role === 'admin') showAdminTab('entities');
 }
 
 // ─── API ─────────────────────────────────────────────────────────────────────
@@ -766,7 +710,7 @@ async function api(method, url, body, token) {
   return data;
 }
 
-// ─── Config ──────────────────────────────────────────────────────────────────
+// ─── Config ───────────────────────────────────────────────────────────────────
 function adjustColor(hex, amount) {
   const n = parseInt(hex.slice(1), 16);
   const r = Math.max(0, Math.min(255, (n >> 16) + amount));
@@ -776,9 +720,10 @@ function adjustColor(hex, amount) {
 }
 function lightenColor(hex, pct) {
   const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-  const nr = Math.round(r + (255-r)*pct), ng = Math.round(g + (255-g)*pct), nb = Math.round(b + (255-b)*pct);
+  const nr = Math.round(r+(255-r)*pct), ng = Math.round(g+(255-g)*pct), nb = Math.round(b+(255-b)*pct);
   return '#' + [nr,ng,nb].map(v=>v.toString(16).padStart(2,'0')).join('');
 }
+
 function applyConfig() {
   if (appConfig.primary_color) {
     const c = appConfig.primary_color;
@@ -787,25 +732,80 @@ function applyConfig() {
     document.documentElement.style.setProperty('--primary-light', lightenColor(c, 0.85));
   }
   if (appConfig.app_name) {
-    document.getElementById('headerAppName').innerHTML = escHtml(appConfig.app_name) + ' <span class="version-badge">v1.0</span>';
+    document.getElementById('headerAppName').innerHTML = escHtml(appConfig.app_name) + ' <span class="version-badge">v1.1</span>';
     document.title = appConfig.app_name;
   }
   if (appConfig.app_subtitle) document.getElementById('headerAppSubtitle').textContent = appConfig.app_subtitle;
   const k = appConfig.kontakt_email;
-  const el = document.getElementById('loginKontaktText');
-  if (k) el.innerHTML = `Kein Zugang? Kontakt: <a href="mailto:${escHtml(k)}" style="color:var(--primary)">${escHtml(k)}</a>`;
-  const uu = appConfig.uber_uns;
+  const loginK = document.getElementById('loginKontaktText');
+  if (k) loginK.innerHTML = `Kontakt: <a href="mailto:${escHtml(k)}" style="color:var(--primary)">${escHtml(k)}</a>`;
+  else loginK.textContent = '';
+  const hilfeK = document.getElementById('hilfeKontaktText');
+  if (hilfeK) hilfeK.innerHTML = k ? `Für Fragen: <a href="mailto:${escHtml(k)}" style="color:var(--primary)">${escHtml(k)}</a>` : 'Für Fragen wende dich an den Administrator.';
+  const uu = appConfig.uber_uns || '';
+  const uuText = document.getElementById('uberUnsText'); if (uuText) uuText.textContent = uu;
+  const uuCustText = document.getElementById('uberUnsCustomText'); if (uuCustText) uuCustText.textContent = uu;
+  const uuCust = document.getElementById('uberUnsCustom'); if (uuCust) uuCust.style.display = uu ? 'block' : 'none';
+  applyModus(appConfig.modus || 'expertise');
+}
+
+function applyModus(modus) {
+  appModus = modus;
+  const isM = modus === 'matching';
+
+  // Nav visibility (auth-independent basics)
+  document.getElementById('nav-suche').style.display = 'none';
+  document.getElementById('nav-uebersicht').style.display = 'none';
+  document.getElementById('nav-anleitung').style.display = isM ? 'none' : '';
+  document.getElementById('nav-hilfe').style.display = isM ? '' : 'none';
+  document.getElementById('nav-wizard').style.display = isM ? '' : 'none';
   const uuNav = document.getElementById('nav-ueber-uns');
-  const uuText = document.getElementById('uberUnsText');
-  if (uuText) uuText.textContent = uu || '';
-  if (uuNav) uuNav.style.display = uu ? 'block' : 'none';
+  uuNav.style.display = isM ? '' : (appConfig.uber_uns ? '' : 'none');
+
+  // Landing sections
+  document.getElementById('landing-expertise').style.display = isM ? 'none' : '';
+  document.getElementById('landing-matching').style.display = isM ? '' : 'none';
+
+  // Login register sections
+  document.getElementById('loginRegisterExpertise').style.display = isM ? 'none' : '';
+  document.getElementById('loginRegisterMatching').style.display = isM ? '' : 'none';
+  document.getElementById('registerCard').style.display = 'none';
+
+  // Über-uns sections
+  document.getElementById('uberUnsExpertise').style.display = isM ? 'none' : '';
+  document.getElementById('uberUnsMatching').style.display = isM ? '' : 'none';
+
+  // Admin entities tab label
+  const tabBtn = document.getElementById('adminTabEntities');
+  if (tabBtn) tabBtn.textContent = isM ? 'Initiativen' : 'Mitglieder';
+  const entHeading = document.getElementById('adminEntitiesHeading');
+  if (entHeading) entHeading.textContent = isM ? 'Alle Initiativen & Accounts' : 'Alle Mitglieder & Accounts';
+  const nameLabel = document.getElementById('newNameLabel');
+  if (nameLabel) nameLabel.textContent = isM ? 'Name der Initiative' : 'Name';
+
+  // Skill kategorie selector: expertise only
+  const katW = document.getElementById('newSkillKatWrapper');
+  if (katW) katW.style.display = isM ? 'none' : '';
+
+  // Background color shift
+  document.documentElement.style.setProperty('--bg', isM ? '#f0fdf4' : '#f0f4ff');
+  document.documentElement.style.setProperty('--border', isM ? '#d1fae5' : '#dbeafe');
+
+  updateHeaderUser();
 }
 
 async function saveConfig() {
   const err = document.getElementById('configError'), ok = document.getElementById('configSuccess');
   err.style.display = 'none'; ok.style.display = 'none';
   try {
-    const body = { app_name: document.getElementById('cfgAppName').value.trim(), app_subtitle: document.getElementById('cfgAppSubtitle').value.trim(), kontakt_email: document.getElementById('cfgKontaktEmail').value.trim(), uber_uns: document.getElementById('cfgUberUns').value.trim(), primary_color: document.getElementById('cfgPrimaryColor').value };
+    const body = {
+      app_name: document.getElementById('cfgAppName').value.trim(),
+      app_subtitle: document.getElementById('cfgAppSubtitle').value.trim(),
+      kontakt_email: document.getElementById('cfgKontaktEmail').value.trim(),
+      uber_uns: document.getElementById('cfgUberUns').value.trim(),
+      primary_color: document.getElementById('cfgPrimaryColor').value,
+      modus: document.getElementById('cfgModus').value
+    };
     await api('PUT', '/api/admin/config', body);
     appConfig = { ...appConfig, ...body }; applyConfig();
     ok.style.display = 'block'; setTimeout(() => ok.style.display = 'none', 3000);
@@ -820,11 +820,11 @@ async function loadAdminConfig() {
     document.getElementById('cfgKontaktEmail').value = cfg.kontakt_email || '';
     document.getElementById('cfgUberUns').value = cfg.uber_uns || '';
     const c = cfg.primary_color || '#2563eb';
-    document.getElementById('cfgPrimaryColor').value = c;
+    const colorInput = document.getElementById('cfgPrimaryColor');
+    colorInput.value = c;
     document.getElementById('cfgPrimaryColorHex').textContent = c;
-    document.getElementById('cfgPrimaryColor').addEventListener('input', e => {
-      document.getElementById('cfgPrimaryColorHex').textContent = e.target.value;
-    }, { once: false });
+    colorInput.oninput = e => document.getElementById('cfgPrimaryColorHex').textContent = e.target.value;
+    document.getElementById('cfgModus').value = cfg.modus || 'expertise';
   } catch {}
 }
 
@@ -838,9 +838,8 @@ async function changeAdminEmail() {
   try {
     await api('PUT', '/api/admin/eigene-email', { neue_email, passwort });
     ok.style.display = 'block';
-    document.getElementById('cfgNeueEmail').value = '';
-    document.getElementById('cfgEmailPasswort').value = '';
-    setTimeout(() => { logout(); }, 2500);
+    document.getElementById('cfgNeueEmail').value = ''; document.getElementById('cfgEmailPasswort').value = '';
+    setTimeout(() => logout(), 2500);
   } catch (e) { err.textContent = e.message; err.style.display = 'block'; }
 }
 
@@ -853,12 +852,17 @@ async function doLogin() {
     const data = await api('POST', '/api/auth/login', { email, password });
     currentUser = { ...data.user, token: data.token };
     localStorage.setItem('sfsd_token', data.token);
-    allSkills = await api('GET', '/api/skills');
     updateHeaderUser();
-    if (currentUser.role === 'admin') { showView('admin-dashboard'); showAdminTab('mitglieder'); }
-    else { showView('mitglied-dashboard'); loadMitgliedProfil(); }
     showToast('Willkommen, ' + (currentUser.anzeigename || currentUser.email));
+    if (currentUser.role === 'admin') { showView('admin-dashboard'); showAdminTab('entities'); }
+    else if (currentUser.role === 'mitglied') { showView('mitglied-dashboard'); loadMitgliedProfil(); }
+    else if (currentUser.role === 'initiative') { showView('initiative-dashboard'); loadInitiativeProfil(); }
   } catch (e) { const el = document.getElementById('loginError'); el.textContent = e.message; el.style.display = 'block'; }
+}
+
+function toggleRegister(show) {
+  document.getElementById('loginCard').style.display = show ? 'none' : 'block';
+  document.getElementById('registerCard').style.display = show ? 'block' : 'none';
 }
 
 async function doRegistrieren() {
@@ -871,127 +875,108 @@ async function doRegistrieren() {
   try {
     await api('POST', '/api/auth/registrieren', { email, password, anzeigename });
     ok.style.display = 'block';
-    document.getElementById('regName').value = '';
-    document.getElementById('regEmail').value = '';
-    document.getElementById('regPassword').value = '';
+    ['regName','regEmail','regPassword'].forEach(id => document.getElementById(id).value = '');
     setTimeout(() => { closeModal('registrierenModal'); showView('login'); document.getElementById('loginEmail').value = email; }, 2000);
   } catch (e) { err.textContent = e.message; err.style.display = 'block'; }
 }
 
+async function doRegistrierung() {
+  const err = document.getElementById('registerError'), ok = document.getElementById('registerSuccess');
+  err.style.display = 'none'; ok.style.display = 'none';
+  const anzeigename = document.getElementById('regAnzeigename').value.trim();
+  const website = document.getElementById('regWebsite').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const password = document.getElementById('regPassword').value;
+  if (!anzeigename) { err.textContent = 'Bitte Name der Initiative angeben'; err.style.display = 'block'; return; }
+  try {
+    await api('POST', '/api/auth/registrierung', { email, password, anzeigename, website: website || null });
+    ok.innerHTML = '✓ Registrierung erfolgreich! Du kannst dich jetzt anmelden.';
+    ok.style.display = 'block';
+    setTimeout(() => { toggleRegister(false); document.getElementById('loginEmail').value = email; }, 2500);
+  } catch (e) { err.textContent = e.message; err.style.display = 'block'; }
+}
+
 function openRegistrierenModal() {
-  document.getElementById('regError').style.display = 'none';
-  document.getElementById('regSuccess').style.display = 'none';
+  ['regError','regSuccess'].forEach(id => document.getElementById(id).style.display = 'none');
   document.getElementById('registrierenModal').classList.add('open');
 }
 
 function logout() {
-  currentUser = null; localStorage.removeItem('sfsd_token');
-  allSkills = [];
+  currentUser = null; localStorage.removeItem('sfsd_token'); allSkills = [];
   updateHeaderUser(); showView('landing'); showToast('Abgemeldet');
 }
 
 function updateHeaderUser() {
-  const hu = document.getElementById('headerUser');
   const isLoggedIn = !!currentUser;
-  const landingCta = document.getElementById('landingCta');
-  const landingCtaGast = document.getElementById('landingCtaGast');
-
-  if (isLoggedIn) {
-    hu.style.display = 'block';
-    document.getElementById('headerUserName').textContent = currentUser.anzeigename || currentUser.email;
-    document.getElementById('nav-login').style.display = 'none';
-    document.getElementById('nav-suche').style.display = 'block';
-    document.getElementById('nav-uebersicht').style.display = 'block';
-    document.getElementById('nav-mitglied').style.display = currentUser.role === 'mitglied' ? 'block' : 'none';
-    document.getElementById('nav-admin').style.display = currentUser.role === 'admin' ? 'block' : 'none';
-    if (landingCta) landingCta.style.display = 'flex';
-    if (landingCtaGast) landingCtaGast.style.display = 'none';
-  } else {
-    hu.style.display = 'none';
-    document.getElementById('nav-login').style.display = 'block';
-    document.getElementById('nav-suche').style.display = 'none';
-    document.getElementById('nav-uebersicht').style.display = 'none';
-    document.getElementById('nav-mitglied').style.display = 'none';
-    document.getElementById('nav-admin').style.display = 'none';
-    if (landingCta) landingCta.style.display = 'none';
-    if (landingCtaGast) landingCtaGast.style.display = 'block';
+  const isM = appModus === 'matching';
+  document.getElementById('headerUser').style.display = isLoggedIn ? 'block' : 'none';
+  if (isLoggedIn) document.getElementById('headerUserName').textContent = currentUser.anzeigename || currentUser.email;
+  document.getElementById('nav-login').style.display = isLoggedIn ? 'none' : 'block';
+  document.getElementById('nav-suche').style.display = (isLoggedIn && !isM) ? 'block' : 'none';
+  document.getElementById('nav-uebersicht').style.display = (isLoggedIn && !isM) ? 'block' : 'none';
+  document.getElementById('nav-mitglied').style.display = (isLoggedIn && !isM && currentUser?.role === 'mitglied') ? 'block' : 'none';
+  document.getElementById('nav-wizard').style.display = isM ? 'block' : 'none';
+  document.getElementById('nav-initiative').style.display = (isLoggedIn && isM && currentUser?.role === 'initiative') ? 'block' : 'none';
+  document.getElementById('nav-admin').style.display = (isLoggedIn && currentUser?.role === 'admin') ? 'block' : 'none';
+  if (!isM) {
+    const lc = document.getElementById('landingCta'); if (lc) lc.style.display = isLoggedIn ? 'flex' : 'none';
+    const lcg = document.getElementById('landingCtaGast'); if (lcg) lcg.style.display = isLoggedIn ? 'none' : 'block';
   }
 }
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 function guardedView(name) {
-  if (PROTECTED_VIEWS.includes(name) && !currentUser) {
-    showToast('Bitte zuerst anmelden');
-    showView('login');
-    return;
-  }
+  const prot = appModus === 'expertise' ? ['suche','uebersicht','ergebnisse','mitglied-dashboard','admin-dashboard'] : ['initiative-dashboard','admin-dashboard'];
+  if (prot.includes(name) && !currentUser) { showToast('Bitte zuerst anmelden'); showView('login'); return; }
   showView(name);
 }
 
 function showView(name) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
-  const view = document.getElementById('view-' + name);
-  if (view) view.classList.add('active');
-  const nav = document.getElementById('nav-' + name);
-  if (nav) nav.classList.add('active');
+  const view = document.getElementById('view-' + name); if (view) view.classList.add('active');
+  const nav = document.getElementById('nav-' + name); if (nav) nav.classList.add('active');
   history.replaceState(null, '', '#' + name);
   if (name === 'uebersicht') loadUebersicht();
 }
 
-// ─── Anleitung ────────────────────────────────────────────────────────────────
 function showAnleitungTab(tab) {
-  ['mitglied', 'admin'].forEach(t => {
+  ['mitglied','admin'].forEach(t => {
     document.getElementById('anleitung-' + t).classList.toggle('active', t === tab);
     const btn = document.getElementById('anlTab' + t.charAt(0).toUpperCase() + t.slice(1));
     if (btn) btn.className = t === tab ? 'btn btn-primary' : 'btn btn-secondary';
   });
 }
 
-// ─── Suche / Wizard ───────────────────────────────────────────────────────────
+// ─── Expertise Suche / Wizard ─────────────────────────────────────────────────
 function toggleChip(el) { el.classList.toggle('selected'); }
 
 function selectNiveau(el) {
   document.querySelectorAll('#niveauChips .chip').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  suchData.minNiveau = parseInt(el.dataset.niveau);
+  el.classList.add('selected'); suchData.minNiveau = parseInt(el.dataset.niveau);
 }
 
 function wizardNext(step) {
-  if (step === 2) {
-    suchData.kategorien = Array.from(document.querySelectorAll('#step-1 .chip.selected')).map(c => c.dataset.kat);
-    renderSuchSkillChips();
-  }
-  document.querySelectorAll('.wizard-step-content').forEach(s => s.classList.remove('active'));
+  if (step === 2) { suchData.kategorien = Array.from(document.querySelectorAll('#step-1 .chip.selected')).map(c => c.dataset.kat); renderSuchSkillChips(); }
+  document.querySelectorAll('#view-suche .wizard-step-content').forEach(s => s.classList.remove('active'));
   document.getElementById('step-' + step).classList.add('active');
   for (let i = 1; i <= 3; i++) {
-    const dot = document.getElementById('dot-' + i);
-    dot.classList.remove('active', 'done');
-    if (i < step) dot.classList.add('done');
-    else if (i === step) dot.classList.add('active');
+    const d = document.getElementById('dot-' + i); d.classList.remove('active','done');
+    if (i < step) d.classList.add('done'); else if (i === step) d.classList.add('active');
   }
   for (let i = 1; i <= 2; i++) document.getElementById('line-' + i).classList.toggle('done', i < step);
 }
 
 function renderSuchSkillChips() {
-  const container = document.getElementById('suchSkillChips');
-  container.innerHTML = '';
-  const filtered = suchData.kategorien.length > 0
-    ? allSkills.filter(s => suchData.kategorien.includes(s.kategorie))
-    : allSkills;
-
+  const container = document.getElementById('suchSkillChips'); container.innerHTML = '';
+  const filtered = suchData.kategorien.length > 0 ? allSkills.filter(s => suchData.kategorien.includes(s.kategorie)) : allSkills;
   const gruppen = {};
   filtered.forEach(s => { if (!gruppen[s.kategorie]) gruppen[s.kategorie] = []; gruppen[s.kategorie].push(s); });
-
   Object.entries(gruppen).forEach(([kat, skills]) => {
-    const div = document.createElement('div');
-    div.className = 'skill-gruppe';
-    div.innerHTML = `<div class="skill-gruppe-titel">${kat}</div><div class="chip-group">`;
+    const div = document.createElement('div'); div.className = 'skill-gruppe';
+    div.innerHTML = `<div class="skill-gruppe-titel">${kat}</div><div class="chip-group"></div>`;
     skills.forEach(s => {
-      const chip = document.createElement('div');
-      chip.className = 'chip';
-      chip.dataset.id = s.id;
-      chip.textContent = s.name;
+      const chip = document.createElement('div'); chip.className = 'chip'; chip.dataset.id = s.id; chip.textContent = s.name;
       chip.onclick = () => chip.classList.toggle('selected');
       div.querySelector('.chip-group').appendChild(chip);
     });
@@ -1006,230 +991,162 @@ async function startSuche() {
   try {
     const mitglieder = await api('GET', '/api/mitglieder/public');
     renderErgebnisse(mitglieder);
-  } catch (e) {
-    document.getElementById('ergebnisGrid').innerHTML = `<div class="alert alert-error">Fehler: ${e.message}</div>`;
-  }
+  } catch (e) { document.getElementById('ergebnisGrid').innerHTML = `<div class="alert alert-error">Fehler: ${e.message}</div>`; }
 }
 
 function calcMatchScore(m) {
   if (suchData.skillIds.length === 0) return 100;
-  const mSkills = m.skills.filter(s => s.niveau >= suchData.minNiveau);
-  const mSkillIds = mSkills.map(s => s.id);
-  const matches = suchData.skillIds.filter(id => mSkillIds.includes(id)).length;
-  return Math.round((matches / suchData.skillIds.length) * 100);
+  const mSkillIds = m.skills.filter(s => s.niveau >= suchData.minNiveau).map(s => s.id);
+  return Math.round((suchData.skillIds.filter(id => mSkillIds.includes(id)).length / suchData.skillIds.length) * 100);
 }
 
 function renderErgebnisse(mitglieder) {
-  const scored = mitglieder
-    .map(m => ({ ...m, score: calcMatchScore(m) }))
-    .filter(m => suchData.skillIds.length === 0 || m.score > 0)
-    .sort((a, b) => b.score - a.score);
-
-  const grid = document.getElementById('ergebnisGrid');
-  const subtitle = document.getElementById('ergebnisSubtitle');
-
-  if (scored.length === 0) {
-    grid.innerHTML = '<div class="alert alert-info">Keine Mitglieder mit dieser Expertise gefunden.</div>';
-    subtitle.textContent = '';
-    return;
-  }
+  const scored = mitglieder.map(m => ({ ...m, score: calcMatchScore(m) })).filter(m => suchData.skillIds.length === 0 || m.score > 0).sort((a, b) => b.score - a.score);
+  const grid = document.getElementById('ergebnisGrid'); const subtitle = document.getElementById('ergebnisSubtitle');
+  if (scored.length === 0) { grid.innerHTML = '<div class="alert alert-info">Keine Mitglieder mit dieser Expertise gefunden.</div>'; subtitle.textContent = ''; return; }
   subtitle.textContent = `${scored.length} Mitglied${scored.length !== 1 ? 'er' : ''} gefunden`;
-  const legende = document.getElementById('niveauLegendeErgebnis');
-  if (legende) legende.style.display = 'none';
-  grid.style.display = 'block';
   grid.innerHTML = renderUebersichtTabelle(scored, suchData.skillIds);
 }
 
 async function loadUebersicht() {
   if (!currentUser) return;
-  const grid = document.getElementById('uebersichtGrid');
-  grid.innerHTML = '<p style="color:var(--text-muted)">Lade …</p>';
+  const grid = document.getElementById('uebersichtGrid'); grid.innerHTML = '<p style="color:var(--text-muted)">Lade …</p>';
   try {
     const mitglieder = await api('GET', '/api/mitglieder/public');
-    if (mitglieder.length === 0) { grid.innerHTML = '<div class="alert alert-info">Noch keine aktiven Profile.</div>'; return; }
+    if (!mitglieder.length) { grid.innerHTML = '<div class="alert alert-info">Noch keine aktiven Profile.</div>'; return; }
     grid.innerHTML = renderUebersichtTabelle(mitglieder);
   } catch (e) { grid.innerHTML = `<div class="alert alert-error">Fehler: ${e.message}</div>`; }
 }
 
 function renderUebersichtTabelle(mitglieder, matchSkillIds = []) {
-  const pills = (skills) => skills.map(s => {
-    const matched = matchSkillIds.includes(s.id);
-    return `<span class="skill-pill${matched ? ' matched' : ''}"><span class="niveau-dot niveau-dot-${s.niveau}"></span>${escHtml(s.name)}</span>`;
-  }).join('');
-
+  const pills = (skills) => skills.map(s => `<span class="skill-pill${matchSkillIds.includes(s.id) ? ' matched' : ''}"><span class="niveau-dot niveau-dot-${s.niveau}"></span>${escHtml(s.name)}</span>`).join('');
   const rows = mitglieder.map(m => {
-    const byNiveau = (a, b) => b.niveau - a.niveau;
-    const saeulen   = m.skills.filter(s => s.kategorie === 'Säule').sort(byNiveau);
-    const methoden  = m.skills.filter(s => s.kategorie === 'Methode').sort(byNiveau);
-    const plattform = m.skills.filter(s => s.kategorie === 'Plattform').sort(byNiveau);
-    const meta = [
-      m.ort              ? `📍 ${escHtml(m.ort)}` : '',
-      m.zeitliches_budget ? `🕐 ${escHtml(m.zeitliches_budget)}` : ''
-    ].filter(Boolean).join('&ensp;·&ensp;');
-    let mitgliedUrls = [];
-    try { mitgliedUrls = JSON.parse(m.urls || '[]'); } catch(e) {}
-    const urlLinks = mitgliedUrls.map(u => {
-      const raw = u.label || u.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      const display = escHtml(raw.length > 22 ? raw.substring(0, 21) + '…' : raw);
-      return `<a href="${escHtml(u.url)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" title="${escHtml(raw)}" style="text-decoration:none;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;display:inline-block">🔗 ${display}</a>`;
-    }).join('');
-    const kontakt = (m.kontakt_email
-      ? `<a href="mailto:${escHtml(m.kontakt_email)}" class="btn btn-primary btn-sm" style="text-decoration:none;white-space:nowrap">✉️ Kontakt</a>`
-      : '') + (urlLinks ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:${m.kontakt_email ? '4px' : '0'}">${urlLinks}</div>` : '');
-    const beschreibung = m.beschreibung
-      ? escHtml(m.beschreibung)
-      : '<span style="color:var(--border-gray)">–</span>';
-    const scoreHtml = m.score !== undefined && matchSkillIds.length > 0
-      ? `<br><span class="match-score ${m.score >= 60 ? 'high' : m.score >= 30 ? 'medium' : 'low'}" style="font-size:0.72rem">${m.score}% Treffer</span>`
-      : '';
-    return `<tr>
-      <td style="white-space:nowrap;vertical-align:top">
-        <strong style="color:var(--primary-dark)">${escHtml(m.name)}</strong>${scoreHtml}
-        ${meta ? `<br><span style="font-size:0.78rem;color:var(--text-muted)">${meta}</span>` : ''}
-      </td>
-      <td style="font-size:0.87rem;color:var(--text-muted);vertical-align:top">${beschreibung}</td>
-      <td style="vertical-align:top"><div class="skill-pills">${pills(saeulen)  || '<span style="color:var(--border-gray)">–</span>'}</div></td>
-      <td style="vertical-align:top"><div class="skill-pills">${pills(methoden) || '<span style="color:var(--border-gray)">–</span>'}</div></td>
-      <td style="vertical-align:top"><div class="skill-pills">${pills(plattform)|| '<span style="color:var(--border-gray)">–</span>'}</div></td>
-      <td style="vertical-align:top">${kontakt}</td>
-    </tr>`;
+    const byN = (a, b) => b.niveau - a.niveau;
+    const sae = m.skills.filter(s => s.kategorie === 'Säule').sort(byN);
+    const met = m.skills.filter(s => s.kategorie === 'Methode').sort(byN);
+    const pla = m.skills.filter(s => s.kategorie === 'Plattform').sort(byN);
+    const meta = [m.ort ? `📍 ${escHtml(m.ort)}` : '', m.zeitliches_budget ? `🕐 ${escHtml(m.zeitliches_budget)}` : ''].filter(Boolean).join('&ensp;·&ensp;');
+    let urls = []; try { urls = JSON.parse(m.urls || '[]'); } catch {}
+    const urlLinks = urls.map(u => { const raw = u.label || u.url.replace(/^https?:\/\//,'').replace(/\/$/,''); return `<a href="${escHtml(u.url)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="text-decoration:none;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;display:inline-block">🔗 ${escHtml(raw.length>22?raw.slice(0,21)+'…':raw)}</a>`; }).join('');
+    const kontakt = (m.kontakt_email ? `<a href="mailto:${escHtml(m.kontakt_email)}" class="btn btn-primary btn-sm" style="text-decoration:none">✉️ Kontakt</a>` : '') + (urlLinks ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:${m.kontakt_email?'4px':'0'}">${urlLinks}</div>` : '');
+    const scoreHtml = m.score !== undefined && matchSkillIds.length > 0 ? `<br><span class="match-score ${m.score>=60?'high':m.score>=30?'medium':'low'}" style="font-size:0.72rem">${m.score}% Treffer</span>` : '';
+    return `<tr><td style="white-space:nowrap;vertical-align:top"><strong style="color:var(--primary-dark)">${escHtml(m.name)}</strong>${scoreHtml}${meta?`<br><span style="font-size:0.78rem;color:var(--text-muted)">${meta}</span>`:''}</td><td style="font-size:0.87rem;color:var(--text-muted);vertical-align:top">${m.beschreibung?escHtml(m.beschreibung):'<span style="color:var(--border-gray)">–</span>'}</td><td style="vertical-align:top"><div class="skill-pills">${pills(sae)||'<span style="color:var(--border-gray)">–</span>'}</div></td><td style="vertical-align:top"><div class="skill-pills">${pills(met)||'<span style="color:var(--border-gray)">–</span>'}</div></td><td style="vertical-align:top"><div class="skill-pills">${pills(pla)||'<span style="color:var(--border-gray)">–</span>'}</div></td><td style="vertical-align:top">${kontakt}</td></tr>`;
   }).join('');
-
-  return `${NIVEAU_LEGENDE}<div style="overflow-x:auto;margin-top:12px">
-    <table class="data-table" style="min-width:720px">
-      <thead><tr>
-        <th>Mitglied</th>
-        <th>Über mich</th>
-        <th>Themen</th>
-        <th>Methoden</th>
-        <th>Plattformen</th>
-        <th>Kontakt</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
+  return `${NIVEAU_LEGENDE}<div style="overflow-x:auto;margin-top:12px"><table class="data-table" style="min-width:720px"><thead><tr><th>Mitglied</th><th>Über mich</th><th>Themen</th><th>Methoden</th><th>Plattformen</th><th>Kontakt</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-function renderMitgliedKarte(m, matchSkillIds) {
-  const scoreClass = m.score >= 60 ? 'high' : m.score >= 30 ? 'medium' : 'low';
-  const scoreHtml = m.score !== undefined && matchSkillIds.length > 0
-    ? `<span class="match-score ${scoreClass}">${m.score}% Treffer</span>` : '';
+// ─── Matching Wizard ─────────────────────────────────────────────────────────
+function mWizardNext(step) {
+  document.querySelectorAll('#view-wizard .wizard-step-content').forEach(s => s.classList.remove('active'));
+  document.getElementById('m-step-' + step).classList.add('active');
+  for (let i = 1; i <= 4; i++) {
+    const d = document.getElementById('m-dot-' + i); d.classList.remove('active','done');
+    if (i < step) d.classList.add('done'); else if (i === step) d.classList.add('active');
+  }
+  for (let i = 1; i <= 3; i++) document.getElementById('m-line-' + i).classList.toggle('done', i < step);
+}
 
-  const saeulen = m.skills.filter(s => s.kategorie === 'Säule');
-  const methoden = m.skills.filter(s => s.kategorie === 'Methode');
-  const plattformen = m.skills.filter(s => s.kategorie === 'Plattform');
+function renderSkillChips() {
+  const container = document.getElementById('skillChips'); if (!container) return;
+  container.innerHTML = '';
+  allSkills.forEach(skill => {
+    const chip = document.createElement('div'); chip.className = 'chip'; chip.dataset.id = skill.id; chip.textContent = skill.name;
+    chip.onclick = () => { chip.classList.toggle('selected'); const idx = wizardData.skills.indexOf(skill.id); if (idx === -1) wizardData.skills.push(skill.id); else wizardData.skills.splice(idx, 1); };
+    container.appendChild(chip);
+  });
+}
 
-  const renderPills = (skills) => skills.map(s => {
-    const dotClass = `niveau-dot niveau-dot-${s.niveau}`;
-    const matched = matchSkillIds.includes(s.id);
-    return `<span class="skill-pill ${matched ? 'matched' : ''}"><span class="${dotClass}"></span>${escHtml(s.name)}</span>`;
+function selectZeit(el) {
+  document.querySelectorAll('.zeit-option').forEach(z => z.classList.remove('selected'));
+  el.classList.add('selected'); wizardData.zeit = el.dataset.wert;
+}
+
+function toggleRemoteChip() {
+  const chip = document.getElementById('chipRemote'); chip.classList.toggle('selected'); wizardData.remote = chip.classList.contains('selected');
+}
+
+async function startMatching() {
+  wizardData.skills = Array.from(document.querySelectorAll('#skillChips .chip.selected')).map(c => parseInt(c.dataset.id));
+  wizardData.typen = Array.from(document.querySelectorAll('#m-step-3 .chip.selected')).map(c => c.dataset.wert);
+  wizardData.plz = document.getElementById('wizardPlz').value.trim();
+  wizardData.remote = document.getElementById('chipRemote').classList.contains('selected');
+  showView('results');
+  try {
+    const initiativen = await api('GET', '/api/initiativen/public');
+    renderResults(initiativen);
+  } catch (e) { document.getElementById('resultGrid').innerHTML = `<div class="alert alert-error">Fehler: ${e.message}</div>`; }
+}
+
+function calcScore(init) {
+  let score = 0;
+  if (wizardData.skills.length > 0 && init.skills.length > 0) {
+    const initIds = init.skills.map(s => s.id);
+    score += (wizardData.skills.filter(id => initIds.includes(id)).length / Math.max(init.skills.length, 1)) * 50;
+  }
+  if (wizardData.typen.length > 0 && init.taetigkeitstypen?.length > 0)
+    score += (wizardData.typen.filter(t => init.taetigkeitstypen.includes(t)).length / Math.max(init.taetigkeitstypen.length, 1)) * 25;
+  const zeitArr = Array.isArray(init.zeitaufwand) ? init.zeitaufwand : (init.zeitaufwand ? [init.zeitaufwand] : []);
+  if (wizardData.zeit && zeitArr.length > 0) {
+    const zo = ['einmalig','wenig','mittel','intensiv'];
+    score += zeitArr.some(z => zo.indexOf(z) <= zo.indexOf(wizardData.zeit)) ? 15 : 5;
+  } else { score += 7; }
+  if (wizardData.remote && init.remote_ok) score += 10; else score += 5;
+  return Math.min(100, Math.round(score));
+}
+
+function renderResults(initiativen) {
+  const scored = initiativen.map(i => ({ ...i, score: calcScore(i) })).sort((a, b) => b.score - a.score);
+  const grid = document.getElementById('resultGrid'); const subtitle = document.getElementById('resultSubtitle');
+  if (!scored.length) { grid.innerHTML = '<div class="alert alert-info">Noch keine Initiativen eingetragen. Komm bald wieder!</div>'; subtitle.textContent = ''; return; }
+  subtitle.textContent = `${scored.length} Initiative${scored.length !== 1 ? 'n' : ''} gefunden – sortiert nach Passung`;
+  const zeitLabels = { einmalig: '⚡ Projektbasis', wenig: '🌱 bis 2h/Woche', mittel: '🌿 2–5h/Woche', intensiv: '🌳 5h+/Woche' };
+  grid.innerHTML = scored.map(init => {
+    const sc = init.score >= 60 ? 'high' : init.score >= 30 ? 'medium' : 'low';
+    const skillPills = init.skills.map(s => `<span class="skill-pill ${wizardData.skills.includes(s.id) ? 'matched' : ''}">${escHtml(s.name)}</span>`).join('');
+    const zeitArr = Array.isArray(init.zeitaufwand) ? init.zeitaufwand : (init.zeitaufwand ? [init.zeitaufwand] : []);
+    const meta = [init.ort ? `📍 ${init.ort}` : '', init.remote_ok ? '🌐 Remote' : '', zeitArr.map(z => zeitLabels[z]||z).join(' · '), init.offene_plaetze ? `👥 ${init.offene_plaetze}` : ''].filter(Boolean);
+    const kontakt = (init.kontakt_email ? `<a href="mailto:${init.kontakt_email}" class="btn btn-primary btn-sm" style="text-decoration:none">✉️ Kontakt</a> ` : '') + (init.website ? `<a href="${init.website}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="text-decoration:none">🔗 Website</a>` : '');
+    return `<div class="result-card"><div class="result-card-header"><h3>${escHtml(init.name)}</h3><span class="match-score ${sc}">${init.score}% Passung</span></div>${init.beschreibung?`<p>${escHtml(init.beschreibung.slice(0,150))}${init.beschreibung.length>150?'…':''}</p>`:''}<div class="meta">${meta.map(m=>`<span>${m}</span>`).join('')}</div>${skillPills?`<div class="skill-pills">${skillPills}</div>`:''}<div style="display:flex;gap:8px;flex-wrap:wrap">${kontakt}</div></div>`;
   }).join('');
-
-  let karteUrls = [];
-  try { karteUrls = JSON.parse(m.urls || '[]'); } catch(e) {}
-  const karteUrlLinks = karteUrls.map(u => {
-    const raw = u.label || u.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-    const display = escHtml(raw.length > 22 ? raw.substring(0, 21) + '…' : raw);
-    return `<a href="${escHtml(u.url)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" title="${escHtml(raw)}" style="text-decoration:none;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;display:inline-block">🔗 ${display}</a>`;
-  }).join('');
-  const kontakt = (m.kontakt_email
-    ? `<a href="mailto:${escHtml(m.kontakt_email)}" class="btn btn-primary btn-sm" style="text-decoration:none">✉️ Kontakt</a>`
-    : '') + (karteUrlLinks ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:${m.kontakt_email ? '4px' : '0'}">${karteUrlLinks}</div>` : '');
-
-  let meta = '';
-  if (m.ort) meta += `<span>📍 ${escHtml(m.ort)}</span>`;
-  if (m.zeitliches_budget) meta += `<span>🕐 ${escHtml(m.zeitliches_budget)}</span>`;
-
-  return `
-    <div class="result-card">
-      <div class="result-card-header">
-        <h3>${escHtml(m.name)}</h3>
-        ${scoreHtml}
-      </div>
-      ${m.beschreibung ? `<p>${escHtml(m.beschreibung.substring(0, 140))}${m.beschreibung.length > 140 ? '…' : ''}</p>` : ''}
-      ${meta ? `<div class="result-card" style="display:flex;flex-wrap:wrap;gap:8px;padding:0;border:none;box-shadow:none;margin-bottom:10px;font-size:0.8rem;color:var(--text-muted)">${meta}</div>` : ''}
-      ${saeulen.length ? `<div style="margin-bottom:8px"><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:4px">Themen</div><div class="skill-pills">${renderPills(saeulen)}</div></div>` : ''}
-      ${methoden.length ? `<div style="margin-bottom:8px"><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:4px">Methoden</div><div class="skill-pills">${renderPills(methoden)}</div></div>` : ''}
-      ${plattformen.length ? `<div style="margin-bottom:12px"><div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:4px">Plattformen</div><div class="skill-pills">${renderPills(plattformen)}</div></div>` : ''}
-      ${m.lerninteressen ? `<p style="font-size:0.82rem;color:var(--text-muted);font-style:italic;margin-bottom:12px">Lerninteressen: ${escHtml(m.lerninteressen)}</p>` : ''}
-      <div>${kontakt}</div>
-    </div>`;
 }
 
 // ─── Skill-Niveaus (Mitglied-Profil) ─────────────────────────────────────────
 function renderSkillGruppen(existingSkills = []) {
-  const existing = {};
-  existingSkills.forEach(s => { existing[s.id] = s.niveau; });
-
-  const container = document.getElementById('skillGruppen');
-  container.innerHTML = '';
-
+  const existing = {}; existingSkills.forEach(s => { existing[s.id] = s.niveau; });
+  const container = document.getElementById('skillGruppen'); container.innerHTML = '';
   const gruppen = {};
   allSkills.forEach(s => { if (!gruppen[s.kategorie]) gruppen[s.kategorie] = []; gruppen[s.kategorie].push(s); });
-
   Object.entries(gruppen).forEach(([kat, skills]) => {
-    const div = document.createElement('div');
-    div.className = 'skill-gruppe';
+    const div = document.createElement('div'); div.className = 'skill-gruppe';
     div.innerHTML = `<div class="skill-gruppe-titel">${kat}</div>`;
-
     skills.forEach(s => {
-      const cur = existing[s.id] || 0;
-      skillNiveaus[s.id] = cur;
-      const row = document.createElement('div');
-      row.className = 'skill-row';
-      row.innerHTML = `
-        <div class="skill-row-name">${escHtml(s.name)}</div>
-        <div class="niveau-selector">
-          ${[0,1,2,3].map(n => `<button class="niveau-btn ${cur === n ? 'active-' + n : ''}" data-skill="${s.id}" data-niveau="${n}" onclick="setNiveau(this)">${n}</button>`).join('')}
-          <span class="niveau-label" id="niveau-label-${s.id}">${niveauText(cur)}</span>
-        </div>`;
+      const cur = existing[s.id] || 0; skillNiveaus[s.id] = cur;
+      const row = document.createElement('div'); row.className = 'skill-row';
+      row.innerHTML = `<div class="skill-row-name">${escHtml(s.name)}</div><div class="niveau-selector">${[0,1,2,3].map(n=>`<button class="niveau-btn ${cur===n?'active-'+n:''}" data-skill="${s.id}" data-niveau="${n}" onclick="setNiveau(this)">${n}</button>`).join('')}<span class="niveau-label" id="niveau-label-${s.id}">${niveauText(cur)}</span></div>`;
       div.appendChild(row);
     });
     container.appendChild(div);
   });
 }
 
-function niveauText(n) {
-  return ['—', 'Grundkenntnisse', 'Solide', 'Expert:in'][n] || '';
-}
+function niveauText(n) { return ['—','Grundkenntnisse','Solide','Expert:in'][n] || ''; }
 
 function setNiveau(btn) {
-  const skillId = parseInt(btn.dataset.skill);
-  const niveau = parseInt(btn.dataset.niveau);
+  const skillId = parseInt(btn.dataset.skill), niveau = parseInt(btn.dataset.niveau);
   skillNiveaus[skillId] = niveau;
-  document.querySelectorAll(`.niveau-btn[data-skill="${skillId}"]`).forEach(b => {
-    b.className = 'niveau-btn' + (parseInt(b.dataset.niveau) === niveau ? ' active-' + niveau : '');
-  });
+  document.querySelectorAll(`.niveau-btn[data-skill="${skillId}"]`).forEach(b => { b.className = 'niveau-btn' + (parseInt(b.dataset.niveau) === niveau ? ' active-' + niveau : ''); });
   document.getElementById('niveau-label-' + skillId).textContent = niveauText(niveau);
 }
 
-// ─── URL-Verwaltung im Profil ─────────────────────────────────────────────────
+// ─── URL-Verwaltung ────────────────────────────────────────────────────────────
 function addUrlRow(label = '', url = '') {
-  const list = document.getElementById('urlsList');
-  const row = document.createElement('div');
+  const list = document.getElementById('urlsList'); const row = document.createElement('div');
   row.style.cssText = 'display:flex;gap:8px;margin-bottom:8px;align-items:center';
-  row.innerHTML = `
-    <input type="text" placeholder="Bezeichnung (z.B. Website, Mastodon)" value="${escHtml(label)}"
-      style="flex:0 0 200px;min-width:100px;padding:8px 10px;border:1px solid var(--border-gray);border-radius:6px;font-size:0.9rem">
-    <input type="url" placeholder="https://…" value="${escHtml(url)}"
-      style="flex:1;padding:8px 10px;border:1px solid var(--border-gray);border-radius:6px;font-size:0.9rem">
-    <button type="button" onclick="this.closest('div').remove()"
-      style="flex:none;background:none;border:1px solid var(--border-gray);border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--text-muted);font-size:1rem" title="Entfernen">✕</button>`;
+  row.innerHTML = `<input type="text" placeholder="Bezeichnung" value="${escHtml(label)}" style="flex:0 0 200px;min-width:100px;padding:8px 10px;border:1px solid var(--border-gray);border-radius:6px;font-size:0.9rem"><input type="url" placeholder="https://…" value="${escHtml(url)}" style="flex:1;padding:8px 10px;border:1px solid var(--border-gray);border-radius:6px;font-size:0.9rem"><button type="button" onclick="this.closest('div').remove()" style="flex:none;background:none;border:1px solid var(--border-gray);border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--text-muted)">✕</button>`;
   list.appendChild(row);
 }
-
-function getUrlsFromForm() {
-  return Array.from(document.querySelectorAll('#urlsList > div')).map(row => {
-    const inputs = row.querySelectorAll('input');
-    return { label: inputs[0].value.trim(), url: inputs[1].value.trim() };
-  }).filter(u => u.url);
-}
-
-function renderUrlRows(urls) {
-  const list = document.getElementById('urlsList');
-  list.innerHTML = '';
-  (urls || []).forEach(u => addUrlRow(u.label || '', u.url || ''));
-}
+function getUrlsFromForm() { return Array.from(document.querySelectorAll('#urlsList > div')).map(r => { const i = r.querySelectorAll('input'); return { label: i[0].value.trim(), url: i[1].value.trim() }; }).filter(u => u.url); }
+function renderUrlRows(urls) { const l = document.getElementById('urlsList'); l.innerHTML = ''; (urls||[]).forEach(u => addUrlRow(u.label||'', u.url||'')); }
 
 // ─── Mitglied-Dashboard ───────────────────────────────────────────────────────
 async function loadMitgliedProfil() {
@@ -1242,207 +1159,267 @@ async function loadMitgliedProfil() {
       document.getElementById('mOrt').value = profil.ort || '';
       document.getElementById('mZeitliches').value = profil.zeitliches_budget || '';
       document.getElementById('mLerninteressen').value = profil.lerninteressen || '';
-      let savedUrls = [];
-      try { savedUrls = JSON.parse(profil.urls || '[]'); } catch(e) {}
-      renderUrlRows(savedUrls);
-      renderSkillGruppen(profil.skills || []);
-      updateStatusBox(profil);
+      let savedUrls = []; try { savedUrls = JSON.parse(profil.urls || '[]'); } catch {}
+      renderUrlRows(savedUrls); renderSkillGruppen(profil.skills || []); updateStatusBox(profil);
     } else {
       document.getElementById('mKontaktEmail').value = currentUser.email || '';
-      renderUrlRows([]);
-      renderSkillGruppen([]);
-      updateStatusBox(null);
+      renderUrlRows([]); renderSkillGruppen([]); updateStatusBox(null);
     }
   } catch (e) { console.error(e); }
 }
 
 async function saveMitglied() {
-  const saveError = document.getElementById('mitgliedSaveError');
-  const savedAlert = document.getElementById('mitgliedSavedAlert');
+  const saveError = document.getElementById('mitgliedSaveError'), savedAlert = document.getElementById('mitgliedSavedAlert');
   const btn = document.getElementById('btnSaveMitglied');
-  saveError.style.display = 'none'; savedAlert.style.display = 'none';
-  btn.disabled = true; btn.textContent = '⏳ Speichern …';
-
-  const body = {
-    name: document.getElementById('mName').value.trim(),
-    beschreibung: document.getElementById('mBeschreibung').value.trim(),
-    kontakt_email: document.getElementById('mKontaktEmail').value.trim(),
-    ort: document.getElementById('mOrt').value.trim(),
-    zeitliches_budget: document.getElementById('mZeitliches').value.trim(),
-    lerninteressen: document.getElementById('mLerninteressen').value.trim(),
-    urls: getUrlsFromForm(),
-    skill_niveaus: skillNiveaus
-  };
-
+  saveError.style.display = 'none'; savedAlert.style.display = 'none'; btn.disabled = true; btn.textContent = '⏳ Speichern …';
+  const body = { name: document.getElementById('mName').value.trim(), beschreibung: document.getElementById('mBeschreibung').value.trim(), kontakt_email: document.getElementById('mKontaktEmail').value.trim(), ort: document.getElementById('mOrt').value.trim(), zeitliches_budget: document.getElementById('mZeitliches').value.trim(), lerninteressen: document.getElementById('mLerninteressen').value.trim(), urls: getUrlsFromForm(), skill_niveaus: skillNiveaus };
   try {
     await api('PUT', '/api/mitglieder/meine', body);
     if (body.name) { currentUser.anzeigename = body.name; updateHeaderUser(); }
-    btn.textContent = '✓ Gespeichert!';
-    showToast('✓ Profil gespeichert!');
+    btn.textContent = '✓ Gespeichert!'; showToast('✓ Profil gespeichert!');
     setTimeout(() => { btn.disabled = false; btn.textContent = '💾 Profil speichern'; }, 2500);
     await loadMitgliedProfil();
-  } catch (e) {
-    btn.disabled = false; btn.textContent = '💾 Profil speichern';
-    saveError.textContent = '⚠️ ' + e.message; saveError.style.display = 'block';
-    showToast('⚠️ ' + e.message);
-  }
+  } catch (e) { btn.disabled = false; btn.textContent = '💾 Profil speichern'; saveError.textContent = '⚠️ ' + e.message; saveError.style.display = 'block'; }
 }
 
 function updateStatusBox(profil) {
-  const box = document.getElementById('mitgliedStatusBox');
-  const btnE = document.getElementById('btnEinreichen');
+  const box = document.getElementById('mitgliedStatusBox'), btnE = document.getElementById('btnEinreichen');
   btnE.style.display = 'none';
   if (!profil) { box.style.display = 'none'; return; }
-  if (profil.aktiv) {
-    box.style.cssText = 'display:block; margin-bottom:16px; padding:16px; border-radius:8px; background:#dcfce7; border:1px solid #86efac; color:#15803d';
-    box.innerHTML = '✅ Dein Profil ist aktiv und in der Übersicht sichtbar.';
-  } else if (profil.bereit_zur_pruefung) {
-    box.style.cssText = 'display:block; margin-bottom:16px; padding:16px; border-radius:8px; background:#fef3c7; border:1px solid #fcd34d; color:#92400e';
-    box.innerHTML = '⏳ Eingereicht – wird demnächst freigeschaltet.';
-  } else {
-    const hatBeschreibung = document.getElementById('mBeschreibung').value.trim();
-    const hatSkill = Object.values(skillNiveaus).some(n => n > 0);
-    if (hatBeschreibung && hatSkill) {
-      box.style.cssText = 'display:block; margin-bottom:16px; padding:16px; border-radius:8px; background:#eff6ff; border:1px solid #93c5fd; color:#1d4ed8';
-      box.innerHTML = '✓ Profil vollständig – du kannst es einreichen.';
-      btnE.style.display = 'inline-block';
-    } else {
-      const fehlend = [];
-      if (!hatBeschreibung) fehlend.push('Kurzbeschreibung');
-      if (!hatSkill) fehlend.push('mindestens 1 Expertise (Niveau > 0)');
-      box.style.cssText = 'display:block; margin-bottom:16px; padding:16px; border-radius:8px; background:#f9fafb; border:1px solid var(--border-gray); color:var(--text-muted)';
-      box.innerHTML = `📝 Noch nicht einreichbar – bitte ergänze: <strong>${fehlend.join(', ')}</strong>`;
-    }
+  if (profil.aktiv) { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#dcfce7;border:1px solid #86efac;color:#15803d'; box.innerHTML = '✅ Dein Profil ist aktiv und in der Übersicht sichtbar.'; }
+  else if (profil.bereit_zur_pruefung) { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#fef3c7;border:1px solid #fcd34d;color:#92400e'; box.innerHTML = '⏳ Eingereicht – wird demnächst freigeschaltet.'; }
+  else {
+    const hatB = document.getElementById('mBeschreibung').value.trim(), hatS = Object.values(skillNiveaus).some(n => n > 0);
+    if (hatB && hatS) { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#eff6ff;border:1px solid #93c5fd;color:#1d4ed8'; box.innerHTML = '✓ Profil vollständig – du kannst es einreichen.'; btnE.style.display = 'inline-block'; }
+    else { const f = []; if (!hatB) f.push('Kurzbeschreibung'); if (!hatS) f.push('mindestens 1 Expertise'); box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#f9fafb;border:1px solid var(--border-gray);color:var(--text-muted)'; box.innerHTML = `📝 Noch nicht einreichbar – bitte ergänze: <strong>${f.join(', ')}</strong>`; }
     box.style.display = 'block';
+  }
+}
+
+// ─── Initiative-Dashboard ─────────────────────────────────────────────────────
+function renderISkillChips(selectedIds = []) {
+  const container = document.getElementById('iSkillChips'); if (!container) return; container.innerHTML = '';
+  allSkills.forEach(skill => {
+    const chip = document.createElement('div'); chip.className = 'chip' + (selectedIds.includes(skill.id) ? ' selected' : ''); chip.dataset.id = skill.id; chip.textContent = skill.name;
+    chip.onclick = () => chip.classList.toggle('selected'); container.appendChild(chip);
+  });
+}
+function getSelectedISkills() { return Array.from(document.querySelectorAll('#iSkillChips .chip.selected')).map(c => parseInt(c.dataset.id)); }
+
+async function loadInitiativeProfil() {
+  try {
+    const profil = await api('GET', '/api/initiativen/meine');
+    if (profil) {
+      document.getElementById('iName').value = profil.name || '';
+      document.getElementById('iBeschreibung').value = profil.beschreibung || '';
+      document.getElementById('iWebsite').value = profil.website || '';
+      document.getElementById('iKontaktEmail').value = profil.kontakt_email || currentUser.email || '';
+      document.getElementById('iKontaktName').value = profil.kontakt_name || '';
+      document.getElementById('iOrt').value = profil.ort || '';
+      document.getElementById('iPlz').value = profil.plz || '';
+      document.getElementById('iRemote').checked = profil.remote_ok || false;
+      document.getElementById('iOffenePlaetze').value = profil.offene_plaetze || '';
+      const zeitArr = Array.isArray(profil.zeitaufwand) ? profil.zeitaufwand : (profil.zeitaufwand ? [profil.zeitaufwand] : []);
+      document.querySelectorAll('#iZeitaufwandChips .chip').forEach(c => c.classList.toggle('selected', zeitArr.includes(c.dataset.wert)));
+      const typen = profil.taetigkeitstypen || [];
+      document.querySelectorAll('#iTypeChips .chip').forEach(c => c.classList.toggle('selected', typen.includes(c.dataset.wert)));
+      renderISkillChips(profil.skills.map(s => s.id));
+      updateInitiativeStatusBox(profil);
+    } else {
+      document.getElementById('iKontaktEmail').value = currentUser.email || '';
+      renderISkillChips([]); updateInitiativeStatusBox(null);
+    }
+  } catch (e) { console.error(e); }
+}
+
+async function saveInitiative() {
+  const saveError = document.getElementById('initiativeSaveError'), savedAlert = document.getElementById('initiativeSavedAlert');
+  const btn = document.getElementById('btnSaveInitiative');
+  saveError.style.display = 'none'; savedAlert.style.display = 'none'; btn.disabled = true; btn.textContent = '⏳ Speichern …';
+  const body = {
+    name: document.getElementById('iName').value.trim(),
+    beschreibung: document.getElementById('iBeschreibung').value.trim(),
+    website: document.getElementById('iWebsite').value.trim(),
+    kontakt_email: document.getElementById('iKontaktEmail').value.trim(),
+    kontakt_name: document.getElementById('iKontaktName').value.trim(),
+    ort: document.getElementById('iOrt').value.trim(),
+    plz: document.getElementById('iPlz').value.trim(),
+    remote_ok: document.getElementById('iRemote').checked,
+    zeitaufwand: Array.from(document.querySelectorAll('#iZeitaufwandChips .chip.selected')).map(c => c.dataset.wert),
+    taetigkeitstypen: Array.from(document.querySelectorAll('#iTypeChips .chip.selected')).map(c => c.dataset.wert),
+    offene_plaetze: document.getElementById('iOffenePlaetze').value.trim(),
+    skill_ids: getSelectedISkills()
+  };
+  try {
+    await api('PUT', '/api/initiativen/meine', body);
+    btn.textContent = '✓ Gespeichert!'; showToast('✓ Profil gespeichert!');
+    setTimeout(() => { btn.disabled = false; btn.textContent = '💾 Profil speichern'; }, 2500);
+    await loadInitiativeProfil();
+  } catch (e) { btn.disabled = false; btn.textContent = '💾 Profil speichern'; saveError.textContent = '⚠️ ' + e.message; saveError.style.display = 'block'; }
+}
+
+function updateInitiativeStatusBox(profil) {
+  const box = document.getElementById('initiativeStatusBox'), btnE = document.getElementById('btnEinreichenInitiative');
+  if (!profil) { box.style.display = 'none'; btnE.style.display = 'none'; return; }
+  btnE.style.display = 'none';
+  if (profil.aktiv) { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#d1fae5;border:1px solid #6ee7b7;color:#065f46'; box.innerHTML = '✅ Dein Profil ist aktiv und wird im Matching angezeigt.'; }
+  else if (profil.bereit_zur_pruefung) { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#fef3c7;border:1px solid #fcd34d;color:#92400e'; box.innerHTML = '⏳ Eingereicht – der Admin prüft deinen Antrag.'; }
+  else {
+    const skillsOk = document.querySelectorAll('#iSkillChips .chip.selected').length > 0;
+    const hatB = document.getElementById('iBeschreibung').value.trim();
+    const hatK = document.getElementById('iKontaktEmail').value.trim() || document.getElementById('iWebsite').value.trim();
+    const f = []; if (!hatB) f.push('Beschreibung'); if (!hatK) f.push('Kontakt-E-Mail oder Website'); if (!skillsOk) f.push('mindestens 1 Skill');
+    if (!f.length) { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46'; box.innerHTML = '✓ Profil vollständig – du kannst es jetzt einreichen.'; btnE.style.display = 'inline-block'; }
+    else { box.style.cssText = 'display:block;margin-bottom:16px;padding:16px;border-radius:8px;background:#f9fafb;border:1px solid var(--border-gray);color:var(--text-muted)'; box.innerHTML = `📝 Noch nicht einreichbar: <strong>${f.join(', ')}</strong>`; }
   }
 }
 
 async function profilEinreichen() {
   try {
-    await api('POST', '/api/mitglieder/meine/einreichen');
-    showToast('✓ Eingereicht!');
-    await loadMitgliedProfil();
+    if (appModus === 'matching') { await api('POST', '/api/initiativen/meine/einreichen'); showToast('🐝 Eingereicht!'); await loadInitiativeProfil(); }
+    else { await api('POST', '/api/mitglieder/meine/einreichen'); showToast('✓ Eingereicht!'); await loadMitgliedProfil(); }
   } catch (e) { alert(e.message); }
+}
+
+async function skillAnfrageStellen() {
+  const input = document.getElementById('skillAnfrageInput'), msg = document.getElementById('skillAnfrageMsg');
+  const name = input.value.trim(); if (!name) return;
+  try {
+    await api('POST', '/api/initiativen/skill-anfrage', { name });
+    input.value = ''; msg.style.cssText = 'display:block;color:#059669'; msg.textContent = '✓ Anfrage eingereicht.';
+    setTimeout(() => msg.style.display = 'none', 4000);
+  } catch (e) { msg.style.cssText = 'display:block;color:#dc2626'; msg.textContent = e.message; }
 }
 
 // ─── Admin ────────────────────────────────────────────────────────────────────
 function showAdminTab(tab) {
-  ['mitglieder', 'skills', 'einstellungen'].forEach(t => {
+  ['entities','skills','einstellungen'].forEach(t => {
     document.getElementById('adminTabContent-' + t).style.display = t === tab ? 'block' : 'none';
     const btn = document.getElementById('adminTab' + t.charAt(0).toUpperCase() + t.slice(1));
     if (btn) btn.className = t === tab ? 'btn btn-primary' : 'btn btn-secondary';
   });
-  if (tab === 'mitglieder') loadAdminMitglieder();
+  if (tab === 'entities') loadAdminEntities();
   if (tab === 'skills') loadAdminSkills();
   if (tab === 'einstellungen') loadAdminConfig();
+}
+
+function loadAdminEntities() {
+  if (appModus === 'matching') return loadAdminInitiativen();
+  return loadAdminMitglieder();
 }
 
 async function loadAdminMitglieder() {
   try {
     const [list, users] = await Promise.all([api('GET', '/api/admin/mitglieder'), api('GET', '/api/admin/users')]);
-    const container = document.getElementById('adminMitgliederTable');
-    const userByEmail = {};
-    users.forEach(u => { userByEmail[u.email] = u; });
+    const container = document.getElementById('adminEntitiesContent');
+    const userByEmail = {}; users.forEach(u => { userByEmail[u.email] = u; });
     const mitProfil = new Set(list.map(i => i.user_email));
     const ohneProfil = users.filter(u => u.role === 'mitglied' && !mitProfil.has(u.email));
-
     const renderRow = (m, u) => {
       const uid = u?.id, isMe = uid === currentUser?.id, isAdmin = u?.role === 'admin';
-      return `<tr>
-        <td><strong>${escHtml(m ? m.name : (u?.anzeigename || u?.email || '–'))}</strong>
-        ${isAdmin ? '<span style="font-size:0.75rem;background:#7c3aed;color:#fff;border-radius:4px;padding:1px 6px;margin-left:4px">Admin</span>' : ''}
-        <br>
-        <span style="font-size:0.8rem;color:var(--text-muted)">${escHtml(m ? m.user_email : u?.email || '–')}</span></td>
-        <td>${m ? m.skills.slice(0,3).map(s => `<span class="badge badge-blue">${escHtml(s.name)}</span> `).join('') + (m.skills.length > 3 ? `+${m.skills.length-3}` : '') : ''}</td>
-        <td style="display:flex;gap:4px;flex-wrap:wrap">
-          ${m ? `<button class="btn btn-sm ${m.aktiv ? 'btn-secondary' : 'btn-primary'}" onclick="toggleAktiv(${m.id})">${m.aktiv ? 'Deaktiv.' : 'Aktivieren'}</button>` : ''}
-          ${uid && !isMe ? `<button class="btn btn-sm btn-secondary" onclick="openPasswortSetzenModal(${uid},'${escHtml(u.email)}')">🔑</button>` : ''}
-          ${uid && !isMe ? `<button class="btn btn-sm btn-secondary" onclick="setzeRolle(${uid},'${isAdmin ? 'mitglied' : 'admin'}')" title="${isAdmin ? 'Zum Mitglied machen' : 'Zum Admin machen'}">${isAdmin ? '👤' : '👑'}</button>` : ''}
-          ${m && !isMe ? `<button class="btn btn-sm btn-danger" onclick="deleteMitglied(${m.id})">Profil ✕</button>` : ''}
-          ${uid && !isMe ? `<button class="btn btn-sm btn-danger" onclick="deleteAccount(${uid})">Account ✕</button>` : ''}
-          ${isMe ? '<span style="font-size:0.8rem;color:var(--text-muted)">(du)</span>' : ''}
-        </td></tr>`;
+      return `<tr><td><strong>${escHtml(m ? m.name : (u?.anzeigename||u?.email||'–'))}</strong>${isAdmin?'<span style="font-size:0.75rem;background:#7c3aed;color:#fff;border-radius:4px;padding:1px 6px;margin-left:4px">Admin</span>':''}<br><span style="font-size:0.8rem;color:var(--text-muted)">${escHtml(m?m.user_email:u?.email||'–')}</span></td><td>${m?m.skills.slice(0,3).map(s=>`<span class="badge badge-blue">${escHtml(s.name)}</span> `).join('')+(m.skills.length>3?`+${m.skills.length-3}`:''):''}</td><td style="display:flex;gap:4px;flex-wrap:wrap">${m?`<button class="btn btn-sm ${m.aktiv?'btn-secondary':'btn-primary'}" onclick="toggleAktiv(${m.id},'mitglieder')">${m.aktiv?'Deaktiv.':'Aktivieren'}</button>`:''} ${uid&&!isMe?`<button class="btn btn-sm btn-secondary" onclick="openPasswortSetzenModal(${uid},'${escHtml(u.email)}')">🔑</button>`:''}${uid&&!isMe?`<button class="btn btn-sm btn-secondary" onclick="setzeRolle(${uid},'${isAdmin?'mitglied':'admin'}')" title="${isAdmin?'Zum Mitglied':'Zum Admin'}">${isAdmin?'👤':'👑'}</button>`:''} ${m&&!isMe?`<button class="btn btn-sm btn-danger" onclick="deleteEntity(${m.id},'mitglieder')">Profil ✕</button>`:''} ${uid&&!isMe?`<button class="btn btn-sm btn-danger" onclick="deleteAccount(${uid})">Account ✕</button>`:''} ${isMe?'<span style="font-size:0.8rem;color:var(--text-muted)">(du)</span>':''}</td></tr>`;
     };
     const renderTable = rows => `<table class="data-table"><thead><tr><th>Name / E-Mail</th><th>Top-Skills</th><th>Aktionen</th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
     const wartet = list.filter(i => i.bereit_zur_pruefung && !i.aktiv);
     const aktiv = list.filter(i => i.aktiv);
     const entwurf = list.filter(i => !i.bereit_zur_pruefung && !i.aktiv);
     let html = '';
-    if (wartet.length) html += `<h3 style="color:var(--primary-dark);margin-bottom:8px">⏳ Wartet (${wartet.length})</h3>${renderTable(wartet.map(m => renderRow(m, userByEmail[m.user_email])))}<div style="margin-bottom:24px"></div>`;
-    if (aktiv.length) html += `<h3 style="color:#059669;margin-bottom:8px">✅ Aktiv (${aktiv.length})</h3>${renderTable(aktiv.map(m => renderRow(m, userByEmail[m.user_email])))}<div style="margin-bottom:24px"></div>`;
-    if (entwurf.length) html += `<details><summary style="cursor:pointer;color:var(--text-muted)">Entwürfe (${entwurf.length})</summary><div style="margin-top:12px">${renderTable(entwurf.map(m => renderRow(m, userByEmail[m.user_email])))}</div></details>`;
-    if (ohneProfil.length) html += `<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--text-muted)">Ohne Profil (${ohneProfil.length})</summary><div style="margin-top:12px">${renderTable(ohneProfil.map(u => renderRow(null, u)))}</div></details>`;
-    if (!html) html = '<p style="color:var(--text-muted)">Noch keine Accounts.</p>';
-    container.innerHTML = html;
+    if (wartet.length) html += `<h3 style="color:var(--primary-dark);margin-bottom:8px">⏳ Wartet (${wartet.length})</h3>${renderTable(wartet.map(m=>renderRow(m,userByEmail[m.user_email])))}<div style="margin-bottom:24px"></div>`;
+    if (aktiv.length) html += `<h3 style="color:#059669;margin-bottom:8px">✅ Aktiv (${aktiv.length})</h3>${renderTable(aktiv.map(m=>renderRow(m,userByEmail[m.user_email])))}<div style="margin-bottom:24px"></div>`;
+    if (entwurf.length) html += `<details><summary style="cursor:pointer;color:var(--text-muted)">Entwürfe (${entwurf.length})</summary><div style="margin-top:12px">${renderTable(entwurf.map(m=>renderRow(m,userByEmail[m.user_email])))}</div></details>`;
+    if (ohneProfil.length) html += `<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--text-muted)">Ohne Profil (${ohneProfil.length})</summary><div style="margin-top:12px">${renderTable(ohneProfil.map(u=>renderRow(null,u)))}</div></details>`;
+    container.innerHTML = html || '<p style="color:var(--text-muted)">Noch keine Accounts.</p>';
   } catch (e) { showToast('Fehler: ' + e.message); }
 }
 
-async function toggleAktiv(id) {
-  try { await api('PUT', `/api/admin/mitglieder/${id}/toggle-aktiv`); loadAdminMitglieder(); }
+async function loadAdminInitiativen() {
+  try {
+    const [list, users] = await Promise.all([api('GET', '/api/admin/initiativen'), api('GET', '/api/admin/users')]);
+    const container = document.getElementById('adminEntitiesContent');
+    const userByEmail = {}; users.forEach(u => { userByEmail[u.email] = u; });
+    const mitProfil = new Set(list.map(i => i.user_email));
+    const ohneProfil = users.filter(u => u.role === 'initiative' && !mitProfil.has(u.email));
+    const renderRow = (i, u) => {
+      const uid = u?.id, isMe = uid === currentUser?.id;
+      return `<tr><td><strong>${escHtml(i?i.name:(u?.anzeigename||u?.email||'–'))}</strong><br><span style="font-size:0.8rem;color:var(--text-muted)">${escHtml(i?i.user_email:u?.email||'–')}</span></td><td>${escHtml(i?.ort||'–')}</td><td>${i?i.skills.slice(0,3).map(s=>`<span class="badge badge-green">${escHtml(s.name)}</span> `).join('')+(i.skills.length>3?`+${i.skills.length-3}`:''):''}</td><td style="display:flex;gap:4px;flex-wrap:wrap">${i?`<button class="btn btn-sm ${i.aktiv?'btn-secondary':'btn-primary'}" onclick="toggleAktiv(${i.id},'initiativen')">${i.aktiv?'Deaktiv.':'Aktivieren'}</button>`:''} ${uid&&!isMe?`<button class="btn btn-sm btn-secondary" onclick="openPasswortSetzenModal(${uid},'${escHtml(u.email)}')">🔑</button>`:''} ${i&&!isMe?`<button class="btn btn-sm btn-danger" onclick="deleteEntity(${i.id},'initiativen')">Profil ✕</button>`:''} ${uid&&!isMe?`<button class="btn btn-sm btn-danger" onclick="deleteAccount(${uid})">Account ✕</button>`:''} ${isMe?'<span style="font-size:0.8rem;color:var(--text-muted)">(du)</span>':''}</td></tr>`;
+    };
+    const renderTable = rows => `<table class="data-table"><thead><tr><th>Name / E-Mail</th><th>Ort</th><th>Skills</th><th>Aktionen</th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
+    const wartet = list.filter(i => i.bereit_zur_pruefung && !i.aktiv);
+    const aktiv = list.filter(i => i.aktiv);
+    const entwurf = list.filter(i => !i.bereit_zur_pruefung && !i.aktiv);
+    let html = '';
+    if (wartet.length) html += `<h3 style="color:var(--primary-dark);margin-bottom:8px">⏳ Wartet (${wartet.length})</h3>${renderTable(wartet.map(i=>renderRow(i,userByEmail[i.user_email])))}<div style="margin-bottom:24px"></div>`;
+    if (aktiv.length) html += `<h3 style="color:#059669;margin-bottom:8px">✅ Aktiv (${aktiv.length})</h3>${renderTable(aktiv.map(i=>renderRow(i,userByEmail[i.user_email])))}<div style="margin-bottom:24px"></div>`;
+    if (entwurf.length) html += `<details><summary style="cursor:pointer;color:var(--text-muted)">Entwürfe (${entwurf.length})</summary><div style="margin-top:12px">${renderTable(entwurf.map(i=>renderRow(i,userByEmail[i.user_email])))}</div></details>`;
+    if (ohneProfil.length) html += `<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--text-muted)">Ohne Profil (${ohneProfil.length})</summary><div style="margin-top:12px">${renderTable(ohneProfil.map(u=>renderRow(null,u)))}</div></details>`;
+    container.innerHTML = html || '<p style="color:var(--text-muted)">Noch keine Accounts.</p>';
+  } catch (e) { showToast('Fehler: ' + e.message); }
+}
+
+async function toggleAktiv(id, type) {
+  const ep = type || (appModus === 'matching' ? 'initiativen' : 'mitglieder');
+  try { await api('PUT', `/api/admin/${ep}/${id}/toggle-aktiv`); loadAdminEntities(); }
   catch (e) { alert(e.message); }
 }
 
-async function deleteMitglied(id) {
-  if (!confirm('Profil wirklich löschen? Account bleibt bestehen.')) return;
-  try { await api('DELETE', `/api/admin/mitglieder/${id}`); loadAdminMitglieder(); showToast('Profil gelöscht'); }
+async function deleteEntity(id, type) {
+  const label = type === 'initiativen' ? 'Initiativprofil' : 'Profil';
+  if (!confirm(`${label} wirklich löschen? Account bleibt bestehen.`)) return;
+  const ep = type || (appModus === 'matching' ? 'initiativen' : 'mitglieder');
+  try { await api('DELETE', `/api/admin/${ep}/${id}`); loadAdminEntities(); showToast('Profil gelöscht'); }
   catch (e) { showToast('Fehler: ' + e.message); }
 }
 
 async function createAccount() {
-  const err = document.getElementById('newAccountError');
-  err.style.display = 'none';
-  const email = document.getElementById('newEmail').value.trim();
-  const password = document.getElementById('newPassword').value;
-  const anzeigename = document.getElementById('newAnzeigename').value.trim();
+  const err = document.getElementById('newAccountError'); err.style.display = 'none';
+  const email = document.getElementById('newEmail').value.trim(), password = document.getElementById('newPassword').value, anzeigename = document.getElementById('newAnzeigename').value.trim();
   try {
     await api('POST', '/api/admin/users', { email, password, anzeigename });
-    document.getElementById('newEmail').value = '';
-    document.getElementById('newPassword').value = '';
-    document.getElementById('newAnzeigename').value = '';
-    loadAdminMitglieder(); showToast('Account angelegt: ' + email);
+    ['newEmail','newPassword','newAnzeigename'].forEach(id => document.getElementById(id).value = '');
+    loadAdminEntities(); showToast('Account angelegt: ' + email);
   } catch (e) { err.textContent = e.message; err.style.display = 'block'; }
 }
 
 async function deleteAccount(id) {
   if (!confirm('Account wirklich löschen?')) return;
-  try { await api('DELETE', `/api/admin/users/${id}`); loadAdminMitglieder(); showToast('Account gelöscht'); }
+  try { await api('DELETE', `/api/admin/users/${id}`); loadAdminEntities(); showToast('Account gelöscht'); }
   catch (e) { showToast('Fehler: ' + e.message); }
 }
 
 async function setzeRolle(id, rolle) {
-  const label = rolle === 'admin' ? 'zum Admin machen' : 'zum Mitglied machen';
-  if (!confirm(`Diesen Account wirklich ${label}?`)) return;
-  try {
-    await api('PUT', `/api/admin/users/${id}/rolle`, { rolle });
-    loadAdminMitglieder();
-    showToast(rolle === 'admin' ? 'Zur Admin gemacht' : 'Zur Mitglied gemacht');
-  } catch (e) { showToast('Fehler: ' + e.message); }
+  if (!confirm(`Account wirklich ${rolle === 'admin' ? 'zum Admin' : 'zum Mitglied'} machen?`)) return;
+  try { await api('PUT', `/api/admin/users/${id}/rolle`, { rolle }); loadAdminEntities(); showToast('Rolle geändert'); }
+  catch (e) { showToast('Fehler: ' + e.message); }
 }
 
 async function loadAdminSkills() {
   try {
+    if (appModus === 'matching') {
+      try {
+        const anfragen = await api('GET', '/api/admin/skill-anfragen');
+        const card = document.getElementById('skillAnfragenCard'), list2 = document.getElementById('skillAnfragenList');
+        if (anfragen.length > 0) {
+          card.style.display = 'block';
+          list2.innerHTML = anfragen.map(a => `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-gray);flex-wrap:wrap;gap:8px"><div><strong>${escHtml(a.name)}</strong><span style="color:var(--text-muted);font-size:0.85rem;margin-left:8px">von ${escHtml(a.initiative_name||'–')}</span></div><div style="display:flex;gap:6px"><button class="btn btn-sm btn-primary" onclick="skillAnfrageAnnehmen(${a.id})">✓ Anlegen</button><button class="btn btn-sm btn-secondary" onclick="skillAnfrageAblehnen(${a.id})">✕ Ablehnen</button></div></div>`).join('');
+        } else { card.style.display = 'none'; }
+      } catch {}
+    }
     const list = await api('GET', '/api/admin/skills');
-    const gruppen = {};
-    list.forEach(s => { if (!gruppen[s.kategorie]) gruppen[s.kategorie] = []; gruppen[s.kategorie].push(s); });
-    document.getElementById('adminSkillsTable').innerHTML = Object.entries(gruppen).map(([kat, skills]) => `
-      <div style="margin-bottom:16px">
-        <div class="skill-gruppe-titel">${kat}</div>
-        <div class="chip-group" style="margin-top:8px">
-          ${skills.map(s => `<div style="display:flex;align-items:center;gap:4px;background:#f3f4f6;padding:4px 10px;border-radius:20px;font-size:0.85rem">
-            <span>${escHtml(s.name)}</span>
-            <button onclick="deleteSkill(${s.id})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0;line-height:1;font-size:1rem">✕</button>
-          </div>`).join('')}
-        </div>
-      </div>`).join('');
+    const container = document.getElementById('adminSkillsTable');
+    if (appModus === 'expertise') {
+      const gruppen = {}; list.forEach(s => { if (!gruppen[s.kategorie]) gruppen[s.kategorie] = []; gruppen[s.kategorie].push(s); });
+      container.innerHTML = Object.entries(gruppen).map(([kat, skills]) => `<div style="margin-bottom:16px"><div class="skill-gruppe-titel">${kat}</div><div class="chip-group" style="margin-top:8px">${skills.map(s=>`<div style="display:flex;align-items:center;gap:4px;background:#f3f4f6;padding:4px 10px;border-radius:20px;font-size:0.85rem"><span>${escHtml(s.name)}</span><button onclick="deleteSkill(${s.id})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0;font-size:1rem">✕</button></div>`).join('')}</div></div>`).join('');
+    } else {
+      container.innerHTML = `<div class="chip-group">${list.map(s=>`<div style="display:flex;align-items:center;gap:4px;background:#f3f4f6;padding:4px 10px;border-radius:20px;font-size:0.85rem"><span>${escHtml(s.name)}</span><button onclick="deleteSkill(${s.id})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0;font-size:1rem">✕</button></div>`).join('')}</div>`;
+    }
   } catch (e) { showToast('Fehler: ' + e.message); }
 }
 
 async function addSkill() {
-  const err = document.getElementById('newSkillError');
-  err.style.display = 'none';
-  const name = document.getElementById('newSkillName').value.trim();
-  const kategorie = document.getElementById('newSkillKat').value;
-  if (!name) return;
+  const err = document.getElementById('newSkillError'); err.style.display = 'none';
+  const name = document.getElementById('newSkillName').value.trim(); if (!name) return;
+  const katEl = document.getElementById('newSkillKat');
+  const kategorie = (appModus === 'expertise' && katEl) ? katEl.value : 'Allgemein';
   try {
     await api('POST', '/api/admin/skills', { name, kategorie });
     document.getElementById('newSkillName').value = '';
@@ -1457,6 +1434,15 @@ async function deleteSkill(id) {
   catch (e) { showToast('Fehler: ' + e.message); }
 }
 
+async function skillAnfrageAnnehmen(id) {
+  try { await api('POST', `/api/admin/skill-anfragen/${id}/annehmen`); allSkills = await api('GET', '/api/skills'); loadAdminSkills(); showToast('✓ Skill angelegt'); }
+  catch (e) { showToast('Fehler: ' + e.message); }
+}
+async function skillAnfrageAblehnen(id) {
+  try { await api('DELETE', `/api/admin/skill-anfragen/${id}`); loadAdminSkills(); showToast('Anfrage abgelehnt'); }
+  catch (e) { showToast('Fehler: ' + e.message); }
+}
+
 // ─── Passwort ─────────────────────────────────────────────────────────────────
 let passwortSetzenUserId = null;
 function openPasswortSetzenModal(userId, email) {
@@ -1468,8 +1454,7 @@ function openPasswortSetzenModal(userId, email) {
   document.getElementById('passwortSetzenModal').classList.add('open');
 }
 async function doPasswortSetzen() {
-  const err = document.getElementById('passwortSetzenError');
-  err.style.display = 'none';
+  const err = document.getElementById('passwortSetzenError'); err.style.display = 'none';
   try {
     await api('PUT', `/api/admin/users/${passwortSetzenUserId}/passwort`, { neues_passwort: document.getElementById('passwortSetzenWert').value });
     document.getElementById('passwortSetzenSuccess').style.display = 'block';
@@ -1484,8 +1469,7 @@ function openPasswortModal() {
 }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 async function changePasswort() {
-  const err = document.getElementById('passwortError');
-  err.style.display = 'none';
+  const err = document.getElementById('passwortError'); err.style.display = 'none';
   const altes = document.getElementById('altesPasswort').value;
   const neues = document.getElementById('neuesPasswort').value;
   const neues2 = document.getElementById('neuesPasswort2').value;
@@ -1505,10 +1489,8 @@ function escHtml(str) {
 }
 let toastTimer;
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
