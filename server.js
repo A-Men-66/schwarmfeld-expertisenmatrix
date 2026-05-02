@@ -141,6 +141,7 @@ async function initDB() {
   // Migrations: neue Spalten sicher hinzufügen
   await pool.query(`ALTER TABLE skills ADD COLUMN IF NOT EXISTS kategorie VARCHAR(50) DEFAULT 'Allgemein'`);
   await pool.query(`ALTER TABLE mitglieder ADD COLUMN IF NOT EXISTS urls TEXT DEFAULT '[]'`);
+  await pool.query(`ALTER TABLE config ADD COLUMN IF NOT EXISTS uber_uns TEXT DEFAULT ''`);
   await pool.query(`ALTER TABLE config ADD COLUMN IF NOT EXISTS primary_color VARCHAR(20) DEFAULT '#2563eb'`);
   await pool.query(`ALTER TABLE config ADD COLUMN IF NOT EXISTS modus VARCHAR(20) DEFAULT 'expertise'`);
   await pool.query(`ALTER TABLE initiativen ADD COLUMN IF NOT EXISTS bereit_zur_pruefung BOOLEAN DEFAULT false`);

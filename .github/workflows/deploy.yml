@@ -20,3 +20,9 @@ jobs:
           curl -s -X POST https://schwarm-feld-wirschaft.andreas-artmann.de/webhook/deploy \
             -H "x-deploy-secret: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}" \
             -f && echo "schwarmfeld-wirtschaft deployed"
+
+      - name: Deploy schwarmfeld (matching demo) via Webhook
+        run: |
+          curl -s -X POST https://schwarmfeld.andreas-artmann.de/webhook/deploy \
+            -H "x-deploy-secret: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}" \
+            -f && echo "schwarmfeld deployed"
