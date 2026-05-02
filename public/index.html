@@ -149,6 +149,7 @@
     <button onclick="guardedView('uebersicht')" id="nav-uebersicht" style="display:none">👥 Alle Mitglieder</button>
     <button onclick="showView('wizard')" id="nav-wizard" style="display:none">🧭 Meinen Platz finden</button>
     <button onclick="showView('uber-uns')" id="nav-uber-uns" style="display:none">ℹ️ Über uns</button>
+    <button onclick="showView('neuigkeiten'); loadNeuigkeiten()" id="nav-neuigkeiten" style="display:none">📢 Neuigkeiten</button>
     <button onclick="showView('anleitung')" id="nav-anleitung">📖 Anleitung</button>
     <button onclick="showView('hilfe')" id="nav-hilfe" style="display:none">❓ Hilfe</button>
     <button onclick="showView('login')" id="nav-login">🔐 Anmelden</button>
@@ -389,6 +390,7 @@
       <div class="anleitung-step"><div class="anleitung-num">3</div><div class="anleitung-text"><h3>Expertise eintragen</h3><p>Im Abschnitt <strong>Meine Expertise</strong> findest du alle Kompetenzbereiche. Niveau: <strong>0 = nicht vorhanden</strong>, <strong>1 = Grundkenntnisse</strong>, <strong>2 = Solide</strong>, <strong>3 = Expert:in</strong>.</p></div></div>
       <div class="anleitung-step"><div class="anleitung-num">4</div><div class="anleitung-text"><h3>Zur Freischaltung einreichen</h3><p>Sobald du Beschreibung und mindestens eine Expertise eingetragen hast, erscheint der Button <strong>Zur Freischaltung einreichen</strong>. Der Admin schaltet dein Profil frei.</p></div></div>
       <div class="anleitung-step"><div class="anleitung-num">5</div><div class="anleitung-text"><h3>Expertise suchen</h3><p>Über <strong>Expertise finden</strong> kannst du gezielt nach Mitgliedern suchen. Über <strong>Alle Mitglieder</strong> siehst du die vollständige Übersicht.</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">6</div><div class="anleitung-text"><h3>Neuigkeiten lesen</h3><p>Im Tab <strong>📢 Neuigkeiten</strong> findest du Ankündigungen und Updates vom Admin — z.B. neue Funktionen, Hinweise oder wichtige Infos zur Plattform.</p></div></div>
     </div>
   </div>
   <div id="anleitung-admin" class="anleitung-section">
@@ -398,6 +400,7 @@
       <div class="anleitung-step"><div class="anleitung-num">2</div><div class="anleitung-text"><h3>Mitglieder freischalten</h3><p>Im Tab <strong>Mitglieder</strong> siehst du Profile im Status <strong>Wartet</strong>. Klicke auf <strong>Aktivieren</strong> um das Profil sichtbar zu schalten.</p></div></div>
       <div class="anleitung-step"><div class="anleitung-num">3</div><div class="anleitung-text"><h3>Skills verwalten</h3><p>Im Tab <strong>Skills</strong> neue Kompetenzen hinzufügen (mit Kategorie: Säule / Methode / Plattform) oder bestehende löschen.</p></div></div>
       <div class="anleitung-step"><div class="anleitung-num">4</div><div class="anleitung-text"><h3>App-Einstellungen</h3><p>Unter <strong>Einstellungen → App-Einstellungen</strong>: App-Name, Untertitel, Kontakt-E-Mail, Über-uns-Text, Primärfarbe und Modus (expertise / matching).</p></div></div>
+      <div class="anleitung-step"><div class="anleitung-num">5</div><div class="anleitung-text"><h3>Ankündigungen verfassen</h3><p>Im Tab <strong>📢 Neuigkeiten</strong> (oben in der Navigation) kannst du Ankündigungen für alle Mitglieder erstellen — z.B. Updates, neue Funktionen oder wichtige Hinweise. Bestehende Einträge können dort auch wieder gelöscht werden.</p></div></div>
     </div>
   </div>
 </div>
@@ -412,6 +415,28 @@
     <div class="card" style="margin-bottom:16px"><h2>Was bedeutet der Passung-Prozentsatz?</h2><ul style="padding-left:20px; line-height:2; margin-top:8px"><li><strong>Skills</strong> – Wie viele deiner Fähigkeiten sucht die Initiative? (bis 50 Punkte)</li><li><strong>Tätigkeitstypen</strong> – Passen deine bevorzugten Tätigkeiten? (bis 25 Punkte)</li><li><strong>Zeit</strong> – Kannst du den Zeitaufwand leisten? (bis 15 Punkte)</li><li><strong>Remote / Ort</strong> – Passt die Erreichbarkeit? (bis 10 Punkte)</li></ul></div>
     <div class="card" style="margin-bottom:16px"><h2>Für Initiativen: Anmeldeprozess</h2><p style="color:var(--text-muted); font-size:0.9rem">Registrieren → Profil ausfüllen → Zur Prüfung einreichen → Aktivierung durch Admin (Bienenprinzip: persönlicher Kontakt oder Empfehlung aus dem Schwarm).</p></div>
     <div class="card"><h2>Kontakt &amp; Fragen</h2><p id="hilfeKontaktText">Für Fragen wende dich an den Administrator.</p></div>
+  </div>
+</div>
+
+<!-- ── NEUIGKEITEN ── -->
+<div id="view-neuigkeiten" class="view">
+  <div style="max-width:760px; margin:0 auto">
+    <h2 style="font-size:1.5rem; color:var(--primary-dark); margin-bottom:6px">📢 Neuigkeiten</h2>
+    <p style="color:var(--text-muted); margin-bottom:24px">Ankündigungen und Updates vom Admin</p>
+
+    <div id="neuigkeitenAdminForm" style="display:none; margin-bottom:24px">
+      <div class="card">
+        <h2>Neue Ankündigung</h2>
+        <div id="ankuendigungError" class="alert alert-error" style="display:none"></div>
+        <div class="form-group"><label>Titel</label><input type="text" id="ankTitel" placeholder="z.B. Neue Funktion verfügbar"></div>
+        <div class="form-group"><label>Text</label><textarea id="ankText" rows="4" placeholder="Was möchtest du mitteilen?"></textarea></div>
+        <button class="btn btn-primary" onclick="createAnkuendigung()">📢 Veröffentlichen</button>
+      </div>
+    </div>
+
+    <div id="neuigkeitenListe">
+      <div class="card"><p style="color:var(--text-muted); text-align:center; padding:20px">Wird geladen …</p></div>
+    </div>
   </div>
 </div>
 
@@ -687,14 +712,15 @@ async function init() {
   updateHeaderUser();
 
   const hash = location.hash.replace('#', '');
-  const validViews = ['landing','suche','uebersicht','ergebnisse','wizard','results','uber-uns','anleitung','hilfe','login','mitglied-dashboard','initiative-dashboard','admin-dashboard'];
+  const validViews = ['landing','suche','uebersicht','ergebnisse','wizard','results','uber-uns','neuigkeiten','anleitung','hilfe','login','mitglied-dashboard','initiative-dashboard','admin-dashboard'];
   const startView = (hash && validViews.includes(hash)) ? hash : 'landing';
-  const protected_e = ['suche','uebersicht','ergebnisse','mitglied-dashboard','admin-dashboard'];
-  const protected_m = ['initiative-dashboard','admin-dashboard'];
+  const protected_e = ['suche','uebersicht','ergebnisse','neuigkeiten','mitglied-dashboard','admin-dashboard'];
+  const protected_m = ['neuigkeiten','initiative-dashboard','admin-dashboard'];
   const prot = appModus === 'expertise' ? protected_e : protected_m;
   if (prot.includes(startView) && !currentUser) { showView('landing'); return; }
   showView(startView);
   if (startView === 'uebersicht') loadUebersicht();
+  if (startView === 'neuigkeiten') loadNeuigkeiten();
   if (startView === 'mitglied-dashboard' && currentUser?.role === 'mitglied') loadMitgliedProfil();
   if (startView === 'initiative-dashboard' && currentUser?.role === 'initiative') loadInitiativeProfil();
   if (startView === 'admin-dashboard' && currentUser?.role === 'admin') showAdminTab('entities');
@@ -912,6 +938,7 @@ function updateHeaderUser() {
   document.getElementById('headerUser').style.display = isLoggedIn ? 'block' : 'none';
   if (isLoggedIn) document.getElementById('headerUserName').textContent = currentUser.anzeigename || currentUser.email;
   document.getElementById('nav-login').style.display = isLoggedIn ? 'none' : 'block';
+  document.getElementById('nav-neuigkeiten').style.display = isLoggedIn ? 'block' : 'none';
   document.getElementById('nav-suche').style.display = (isLoggedIn && !isM) ? 'block' : 'none';
   document.getElementById('nav-uebersicht').style.display = (isLoggedIn && !isM) ? 'block' : 'none';
   document.getElementById('nav-mitglied').style.display = (isLoggedIn && !isM && currentUser?.role === 'mitglied') ? 'block' : 'none';
@@ -1480,6 +1507,58 @@ async function changePasswort() {
     document.getElementById('passwortSuccess').style.display = 'block';
     setTimeout(() => closeModal('passwortModal'), 1500);
   } catch (e) { err.textContent = e.message; err.style.display = 'block'; }
+}
+
+// ─── Neuigkeiten ─────────────────────────────────────────────────────────────
+async function loadNeuigkeiten() {
+  const isAdmin = currentUser?.role === 'admin';
+  const formEl = document.getElementById('neuigkeitenAdminForm');
+  if (formEl) formEl.style.display = isAdmin ? 'block' : 'none';
+
+  const liste = document.getElementById('neuigkeitenListe');
+  if (!liste) return;
+  liste.innerHTML = '<div class="card"><p style="color:var(--text-muted); text-align:center; padding:20px">Wird geladen …</p></div>';
+  try {
+    const items = await api('GET', '/api/ankuendigungen');
+    if (items.length === 0) {
+      liste.innerHTML = '<div class="card"><p style="color:var(--text-muted); text-align:center; padding:20px">Noch keine Ankündigungen vorhanden.</p></div>';
+      return;
+    }
+    liste.innerHTML = items.map(a => {
+      const dt = new Date(a.erstellt_at).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric' });
+      const deleteBtn = isAdmin ? `<button class="btn btn-sm btn-danger" style="margin-top:12px" onclick="deleteAnkuendigung(${a.id})">✕ Löschen</button>` : '';
+      return `<div class="card" style="margin-bottom:16px">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:10px">
+          <h3 style="color:var(--primary-dark); font-size:1.1rem">${escHtml(a.titel)}</h3>
+          <span style="font-size:0.8rem; color:var(--text-muted); white-space:nowrap">📅 ${dt}</span>
+        </div>
+        <p style="white-space:pre-line; color:var(--text); line-height:1.7; font-size:0.95rem">${escHtml(a.text)}</p>
+        ${deleteBtn}
+      </div>`;
+    }).join('');
+  } catch (e) {
+    liste.innerHTML = `<div class="alert alert-error">Fehler: ${escHtml(e.message)}</div>`;
+  }
+}
+
+async function createAnkuendigung() {
+  const err = document.getElementById('ankuendigungError'); err.style.display = 'none';
+  const titel = document.getElementById('ankTitel').value.trim();
+  const text = document.getElementById('ankText').value.trim();
+  if (!titel || !text) { err.textContent = 'Bitte Titel und Text ausfüllen'; err.style.display = 'block'; return; }
+  try {
+    await api('POST', '/api/admin/ankuendigungen', { titel, text });
+    document.getElementById('ankTitel').value = '';
+    document.getElementById('ankText').value = '';
+    showToast('Ankündigung veröffentlicht');
+    loadNeuigkeiten();
+  } catch (e) { err.textContent = e.message; err.style.display = 'block'; }
+}
+
+async function deleteAnkuendigung(id) {
+  if (!confirm('Ankündigung wirklich löschen?')) return;
+  try { await api('DELETE', `/api/admin/ankuendigungen/${id}`); loadNeuigkeiten(); showToast('Ankündigung gelöscht'); }
+  catch (e) { showToast('Fehler: ' + e.message); }
 }
 
 // ─── Utils ────────────────────────────────────────────────────────────────────

@@ -135,6 +135,13 @@ async function initDB() {
       CHECK (id = 1)
     );
 
+    CREATE TABLE IF NOT EXISTS ankuendigungen (
+      id SERIAL PRIMARY KEY,
+      titel VARCHAR(255) NOT NULL,
+      text TEXT NOT NULL,
+      erstellt_at TIMESTAMP DEFAULT NOW()
+    );
+
     INSERT INTO config (id) VALUES (1) ON CONFLICT DO NOTHING;
   `);
 
@@ -791,6 +798,28 @@ app.post('/api/admin/skills', adminRequired, async (req, res) => {
 
 app.delete('/api/admin/skills/:id', adminRequired, async (req, res) => {
   await pool.query('DELETE FROM skills WHERE id = $1', [req.params.id]);
+  res.json({ ok: true });
+});
+
+// ─── Ankündigungen ─────────────────────────────────────────────────────────
+app.get('/api/ankuendigungen', authRequired, async (req, res) => {
+  const result = await pool.query('SELECT * FROM ankuendigungen ORDER BY erstellt_at DESC');
+  res.json(result.rows);
+});
+
+app.post('/api/admin/ankuendigungen', adminRequired, async (req, res) => {
+  const { titel, text } = req.body;
+  if (!titel?.trim() || !text?.trim()) return res.status(400).json({ error: 'Titel und Text erforderlich' });
+  const result = await pool.query(
+    'INSERT INTO ankuendigungen (titel, text) VALUES ($1, $2) RETURNING *',
+    [titel.trim(), text.trim()]
+  );
+  res.json(result.rows[0]);
+});
+
+app.delete('/api/admin/ankuendigungen/:id', adminRequired, async (req, res) => {
+  const result = await pool.query('DELETE FROM ankuendigungen WHERE id = $1 RETURNING id', [req.params.id]);
+  if (result.rows.length === 0) return res.status(404).json({ error: 'Nicht gefunden' });
   res.json({ ok: true });
 });
 
