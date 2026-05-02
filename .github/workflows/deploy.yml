@@ -9,22 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Key dekodieren und prüfen
+      - name: Deploy schwarmfeld-sd via Webhook
         run: |
-          echo "${{ secrets.HETZNER_SSH_KEY_B64 }}" | base64 -d > /tmp/deploy_key
-          chmod 600 /tmp/deploy_key
-          ssh-keygen -l -f /tmp/deploy_key
-          echo "Key OK"
-
-      - name: Netzwerk-Erreichbarkeit prüfen
-        run: |
-          nc -zv 178.104.46.6 22 && echo "Port 22 erreichbar" || echo "Port 22 NICHT erreichbar"
-
-      - name: Deploy schwarmfeld-sd
-        run: |
-          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no root@178.104.46.6 '
-            cd /var/www/schwarmfeld-sd &&
-            git pull origin main &&
-            npm install --production &&
-            pm2 restart schwarmfeld-sd
-          '
+          curl -s -X POST https://scharm-feld-sd.andreas-artmann.de/webhook/deploy \
+            -H "x-deploy-secret: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}" \
+            -f && echo "Deploy ausgelöst"

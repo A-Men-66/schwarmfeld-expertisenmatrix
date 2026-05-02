@@ -536,6 +536,22 @@ app.delete('/api/admin/skills/:id', adminRequired, async (req, res) => {
   res.json({ ok: true });
 });
 
+// ─── Deploy Webhook ────────────────────────────────────────────────────────
+app.post('/webhook/deploy', (req, res) => {
+  const secret = process.env.DEPLOY_SECRET;
+  if (!secret || req.headers['x-deploy-secret'] !== secret) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  res.json({ ok: true, message: 'Deploy gestartet' });
+  const { exec } = require('child_process');
+  exec('cd /var/www/schwarmfeld-sd && git pull origin main && npm install --production && pm2 restart schwarmfeld-sd',
+    (err, stdout, stderr) => {
+      if (err) console.error('Deploy-Fehler:', stderr);
+      else console.log('Deploy erfolgreich:', stdout);
+    }
+  );
+});
+
 // ─── Error Handler ─────────────────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err);
