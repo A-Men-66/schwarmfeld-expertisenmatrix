@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Deploy schwarmfeld-sd via Webhook
         run: |
-          curl -s -X POST https://scharm-feld-sd.andreas-artmann.de/webhook/deploy \
+          curl -s -X POST https://schwarm-feld-sd.andreas-artmann.de/webhook/deploy \
             -H "x-deploy-secret: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}" \
             -f && echo "Deploy ausgelöst"
