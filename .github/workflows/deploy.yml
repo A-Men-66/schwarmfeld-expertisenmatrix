@@ -9,12 +9,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: SSH-Key vorbereiten
+        run: |
+          echo "${{ secrets.HETZNER_SSH_KEY_B64 }}" | base64 -d > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+
       - name: Deploy schwarmfeld-sd
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 178.104.46.6
           username: root
-          key: ${{ secrets.HETZNER_SSH_KEY }}
+          key_path: /tmp/deploy_key
           script: |
             cd /var/www/schwarmfeld-sd
             git pull origin main
