@@ -4,8 +4,6 @@ Expertise-Matrix und Vernetzungsplattform für Netzwerke und Initiativen.
 
 Mitglieder können sich mit ihren Fähigkeiten, Interessen und Kontaktdaten eintragen. Administratoren verwalten Profile und geben sie frei.
 
-**Live-Instanz:** https://schwarm-feld-sd.andreas-artmann.de
-
 **Quellcode:** https://github.com/A-Men-66/schwarmfeld-expertisenmatrix
 
 ## Ziel
